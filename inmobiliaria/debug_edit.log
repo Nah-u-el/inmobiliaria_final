@@ -1,0 +1,224 @@
+
+--- 2025-06-06 15:21:23 ---
+Datos POST recibidos:
+Array
+(
+    [id_caja] => undefined
+    [Fecha] => 2025-06-06
+    [Concepto] => reparaciones
+    [TipoMovimiento] => recibido
+    [Monto] => 11
+    [FormaPago] => transferencia
+    [ClienteInmueble] => nahueli
+    [Observaciones] => ninguna
+)
+
+Variables procesadas (antes del signo):
+Array
+(
+    [id_caja] => undefined
+    [concepto] => reparaciones
+    [monto_raw] => 11
+    [tipoMovimiento] => recibido
+    [formaPago] => transferencia
+    [clienteInmueble] => nahueli
+    [observaciones] => ninguna
+)
+
+ERROR: ID no válido o vacío. ID: undefined
+
+--- 2025-06-06 15:22:59 ---
+Datos POST recibidos:
+Array
+(
+    [CajaID] => undefined
+    [Fecha] => 2025-06-06
+    [Concepto] => reparaciones
+    [TipoMovimiento] => recibido
+    [Monto] => 11
+    [FormaPago] => transferencia
+    [ClienteInmueble] => nahueli
+    [Observaciones] => ninguna
+)
+
+Variables procesadas (antes del signo):
+Array
+(
+    [id_caja] => 
+    [concepto] => reparaciones
+    [monto_raw] => 11
+    [tipoMovimiento] => recibido
+    [formaPago] => transferencia
+    [clienteInmueble] => nahueli
+    [observaciones] => ninguna
+)
+
+ERROR: ID no válido o vacío. ID: 
+
+--- 2025-06-06 15:26:57 ---
+Datos POST recibidos:
+Array
+(
+    [CajaID] => undefined
+    [Fecha] => 2025-06-06
+    [Concepto] => reparaciones
+    [TipoMovimiento] => recibido
+    [Monto] => 11
+    [FormaPago] => transferencia
+    [ClienteInmueble] => nahueli
+    [Observaciones] => ninguna
+)
+
+Variables procesadas (antes del signo):
+Array
+(
+    [id_caja] => 
+    [concepto] => reparaciones
+    [monto_raw] => 11
+    [tipoMovimiento] => recibido
+    [formaPago] => transferencia
+    [clienteInmueble] => nahueli
+    [observaciones] => ninguna
+)
+
+ERROR: ID no válido o vacío. ID: 
+
+--- 2025-06-06 15:27:36 ---
+Datos POST recibidos:
+Array
+(
+    [CajaID] => undefined
+    [Fecha] => 2025-06-06
+    [Concepto] => reparaciones
+    [TipoMovimiento] => recibido
+    [Monto] => 11
+    [FormaPago] => transferencia
+    [ClienteInmueble] => nahueli
+    [Observaciones] => ninguna
+)
+
+Variables procesadas (antes del signo):
+Array
+(
+    [id_caja] => 
+    [concepto] => reparaciones
+    [monto_raw] => 11
+    [tipoMovimiento] => recibido
+    [formaPago] => transferencia
+    [clienteInmueble] => nahueli
+    [observaciones] => ninguna
+)
+
+ERROR: ID no válido o vacío. ID: 
+
+--- 2025-06-06 15:27:52 ---
+Datos POST recibidos:
+Array
+(
+    [CajaID] => undefined
+    [Fecha] => 2025-06-06
+    [Concepto] => reparaciones
+    [TipoMovimiento] => recibido
+    [Monto] => 11
+    [FormaPago] => transferencia
+    [ClienteInmueble] => nahueli
+    [Observaciones] => ninguna
+)
+
+Variables procesadas (antes del signo):
+Array
+(
+    [id_caja] => 
+    [concepto] => reparaciones
+    [monto_raw] => 11
+    [tipoMovimiento] => recibido
+    [formaPago] => transferencia
+    [clienteInmueble] => nahueli
+    [observaciones] => ninguna
+)
+
+ERROR: ID no válido o vacío. ID: 
+
+--- 2025-06-06 15:29:09 ---
+Datos POST recibidos:
+Array
+(
+    [id_caja] => undefined
+    [Fecha] => 2025-06-06
+    [Concepto] => reparaciones
+    [TipoMovimiento] => recibido
+    [Monto] => 11
+    [FormaPago] => transferencia
+    [ClienteInmueble] => nahueli
+    [Observaciones] => ninguna
+)
+
+Variables procesadas (antes del signo):
+Array
+(
+    [id_caja] => 
+    [concepto] => reparaciones
+    [monto_raw] => 11
+    [tipoMovimiento] => recibido
+    [formaPago] => transferencia
+    [clienteInmueble] => nahueli
+    [observaciones] => ninguna
+)
+
+ERROR: ID no válido o vacío. ID: 
+
+--- 2025-06-06 15:30:19 ---
+Datos POST recibidos:
+Array
+(
+    [id_caja] => undefined
+    [Fecha] => 2025-06-06
+    [Concepto] => reparaciones
+    [TipoMovimiento] => recibido
+    [Monto] => 11
+    [FormaPago] => transferencia
+    [ClienteInmueble] => nahueli
+    [Observaciones] => ninguna
+)
+
+Variables procesadas (antes del signo):
+Array
+(
+    [id_caja] => undefined
+    [concepto] => reparaciones
+    [monto_raw] => 11
+    [tipoMovimiento] => recibido
+    [formaPago] => transferencia
+    [clienteInmueble] => nahueli
+    [observaciones] => ninguna
+)
+
+ERROR: ID no válido o vacío. ID: undefined
+
+--- 2025-06-06 15:31:55 ---
+Datos POST recibidos:
+Array
+(
+    [id_caja] => undefined
+    [Fecha] => 2025-06-06
+    [Concepto] => reparaciones
+    [TipoMovimiento] => recibido
+    [Monto] => 11
+    [FormaPago] => transferencia
+    [ClienteInmueble] => nahueli
+    [Observaciones] => ninguna
+)
+
+Variables procesadas (antes del signo):
+Array
+(
+    [id_caja] => undefined
+    [concepto] => reparaciones
+    [monto_raw] => 11
+    [tipoMovimiento] => recibido
+    [formaPago] => transferencia
+    [clienteInmueble] => nahueli
+    [observaciones] => ninguna
+)
+
+ERROR: ID no válido o vacío. ID: undefined

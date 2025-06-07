@@ -1,0 +1,17 @@
+
+--- INICIO DE EJECUCIÓN: 2025-06-06 15:36:02 ---
+Datos POST recibidos:
+Array
+(
+    [id_caja] => undefined
+    [Fecha] => 2025-06-06
+    [Concepto] => reparaciones
+    [TipoMovimiento] => enviado
+    [Monto] => -500
+    [FormaPago] => efectivo
+    [ClienteInmueble] => robertito
+    [Observaciones] => reparacion de casa
+)
+
+Valor de $id_caja después de recibirlo: 'undefined'
+ERROR: ID no válido o vacío. ID: 'undefined'
