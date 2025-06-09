@@ -58,14 +58,9 @@ include_once 'conexion.php';
     <header>
         <div class="header-content">
             <div class="dropdown">
-                <button type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Menú de Navegación">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
-                        <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
-                    </svg>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">📆 Pagos del Mes</a></li>
-                    </ul>
-                </button>
+               <a href="../login/logout.php" class="btn btn-danger">
+                <i class="fas fa-power-off"></i> Cerrar Sesión
+            </a>
             </div>
 
             <img src="logo2.png" alt="Logo Inmobiliaria" class="logo">
@@ -100,9 +95,7 @@ include_once 'conexion.php';
             <button type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#addClienteModal">
                 <i class="fas fa-user-plus"></i> Nuevo Cliente
             </button>
-            <a href="../login/logout.php" class="btn btn-danger">
-                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
-            </a>
+            
         </div>
 
         <div class="card shadow-sm">

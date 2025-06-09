@@ -1,6 +1,15 @@
 <?php
 session_start();
 
+// --- INICIO DE LAS CABECERAS PARA EVITAR CACHÉ ---
+// Estas cabeceras son fundamentales para prevenir el caché del navegador,
+// especialmente el bfcache de Firefox.
+header("Cache-Control: no-cache, no-store, must-revalidate, max-age=0"); // HTTP 1.1
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache"); // HTTP 1.0
+header("Expires: 0"); // Proxies
+// --- FIN DE LAS CABECERAS PARA EVITAR CACHÉ ---
+
 // Muestra mensajes de sesión (alertas) si existen
 if (isset($_SESSION['mensaje'])) {
     echo "<script>alert('" . $_SESSION['mensaje'] . "');</script>";
@@ -371,6 +380,7 @@ include_once 'conexion.php';
                 alert("Error en la solicitud de edición. Inténtalo de nuevo.");
             });
         });
+    
     </script>
 </body>
 </html>
