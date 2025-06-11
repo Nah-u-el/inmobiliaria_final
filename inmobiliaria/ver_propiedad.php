@@ -73,6 +73,14 @@ if (isset($_GET['id'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sistema de Gestión Inmobiliaria</title>
+
+    <link rel="icon" type="image/x-icon" href="../login/img/favicon.ico">
+    <link rel="icon" type="image/png" href="../login/img/favicon-16x16.png">
+    <link rel="icon" type="image/png" href="../login/img/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" href="../login/img/android-chrome-512x512.png">
+    <link rel="icon" type="image/png" href="../login/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="../login/img/favicon-32x32.png">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" />
@@ -92,7 +100,7 @@ if (isset($_GET['id'])) {
       </ul>
      </button>
     </div>
-    <img src="logo2.png" alt="Logo Inmobiliaria" class="logo">
+    <img src="../login/img_login/descarga.png" alt="Logo Inmobiliaria" class="logo">
     <div>
      <div class="dropdown">
       <button type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -122,7 +130,7 @@ if (isset($_GET['id'])) {
   
     <div class="container mt-4">
             <a href="propiedades.php" class="btn text-white" style="background-color: rgba(233, 128, 0, 0.92);">
-                ← Volver a Propiedades
+                <i class="fas fa-arrow-left"></i> Volver a Propiedades
             </a>
         </div>
         <main class="container mt-4">

@@ -35,18 +35,24 @@ include_once 'conexion.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Gestión Inmobiliaria - Clientes</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>SC Inmobiliaria San Cristobal</title>
+
+    <link rel="icon" type="image/x-icon" href="../login/img/favicon.ico">
+    <link rel="icon" type="image/png" href="../login/img/favicon-16x16.png">
+    <link rel="icon" type="image/png" href="../login/img/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" href="../login/img/android-chrome-512x512.png">
+    <link rel="icon" type="image/png" href="../login/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="../login/img/favicon-32x32.png">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="//cdn.datatables.net/2.2.2/css/dataTables.dataTables.min.css">
-    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
-    <link rel="icon" type="image/png" href="img/favicon-16x16.png">
-    <link rel="icon" type="image/png" href="img/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" href="img/android-chrome-512x512.png">
-    <link rel="icon" type="image/png" href="img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="img/favicon-32x32.png">
+
     <style>
         /* Oculta el body por defecto para evitar "flash" de contenido si la sesión no es válida */
         body {
@@ -63,7 +69,7 @@ include_once 'conexion.php';
             </a>
             </div>
 
-            <img src="logo2.png" alt="Logo Inmobiliaria" class="logo">
+            <img src="../login/img_login/descarga.png" alt="SC Inmobiliaria" class="logo">
 
             <div>
                 <div class="dropdown">
