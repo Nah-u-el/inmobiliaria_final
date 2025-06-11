@@ -17,7 +17,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit; // Termina la ejecución del script
 }
 
-// Muestra mensajes de sesión (alertas) si existen
+// Muestra mensajes de sesión (alerta) si existen
 if (isset($_SESSION['mensaje'])) {
     echo "<script>alert('" . $_SESSION['mensaje'] . "');</script>";
     unset($_SESSION['mensaje']); // Elimina el mensaje después de mostrarlo
@@ -97,12 +97,39 @@ include_once 'conexion.php';
         </nav>
     </header>
     <main class="container mt-4">
+
+        <?php
+// ... (código PHP anterior) ...
+
+// Determinar la clase CSS del botón y el texto/ícono dinámicamente
+// Si actualmente estamos mostrando 'inactivos', el botón debería ofrecer ver 'activos'.
+// Si no estamos mostrando 'inactivos' (es decir, estamos mostrando 'activos'), el botón debería ofrecer ver 'inactivos'.
+if (isset($_GET['mostrar']) && $_GET['mostrar'] == 'inactivos') {
+    $button_class = 'btn-success'; // Por ejemplo, verde para "Ver Clientes Activos"
+    $button_text = 'Ver Clientes Activos';
+    $button_icon = 'fas fa-user-check'; // Un ícono que sugiera "activo" o "revisar"
+    $link_param = 'activos'; // El enlace dirigirá a la vista de activos
+} else {
+    $button_class = 'btn-warning'; // Por ejemplo, amarillo/naranja para "Ver Clientes Inactivos"
+    $button_text = 'Ver Clientes Inactivos';
+    $button_icon = 'fas fa-user-slash'; // Un ícono que sugiera "inactivo" o "oculto"
+    $link_param = 'inactivos'; // El enlace dirigirá a la vista de inactivos
+}
+
+?>
+
+
         <div class="d-flex justify-content-start align-items-center mb-3">
-            <button type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#addClienteModal">
-                <i class="fas fa-user-plus"></i> Nuevo Cliente
-            </button>
-            
-        </div>
+    <button type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#addClienteModal">
+        <i class="fas fa-user-plus"></i> Nuevo Cliente
+    </button>
+
+    <a href="clientes.php?mostrar=<?php echo $link_param; ?>"
+       class="btn <?php echo $button_class; ?>"> <i class="<?php echo $button_icon; ?>"></i>
+       <?php echo $button_text; ?>
+    </a>
+</div>
+
 
         <div class="card shadow-sm">
             <div class="card-header text-white" style="background-color:rgba(233, 128, 0, 0.92);">
@@ -137,19 +164,31 @@ include_once 'conexion.php';
 
                     // Iterar sobre cada fila de resultados
                     while ($fila_cliente = mysqli_fetch_assoc($result_clientes)) {
-                        // Mostrar cada fila en la tabla
+                        // Determinar el texto y color del botón de estado
+                        $btn_estado_text = (isset($_GET['mostrar']) && $_GET['mostrar'] == 'inactivos') ? 'Activar' : 'Eliminar';
+                        $btn_estado_class = (isset($_GET['mostrar']) && $_GET['mostrar'] == 'inactivos') ? 'btn-warning' : 'btn-danger';
+                        $btn_estado_icon = (isset($_GET['mostrar']) && $_GET['mostrar'] == 'inactivos') ? 'fas fa-user-check' : 'fas fa-trash-alt';
+                        $action_file = (isset($_GET['mostrar']) && $_GET['mostrar'] == 'inactivos') ? 'activar_cliente.php' : 'eliminar_cliente.php';
+
+
                         echo '<tr>
-                                        <td>' . htmlspecialchars($fila_cliente['Nombre']) . ' ' . htmlspecialchars($fila_cliente['Apellido']) . '</td>
-                                        <td>' . htmlspecialchars($fila_cliente['Direccion']) . '</td>
-                                        <td>
-                                            <a href="#" class="btn btn-sm btn-success me-1" title="Generar Recibo"><i class="fas fa-file-invoice-dollar"></i> Recibo</a>
-                                            <a href="ver_clientes.php?id=' . htmlspecialchars($fila_cliente['ClienteID']) . '" class="btn btn-sm btn-info text-white" title="Ver Detalles"><i class="fas fa-eye"></i> Ver</a>
-                                        </td>
-                                    </tr>';
+                                    <td>' . htmlspecialchars($fila_cliente['Nombre']) . ' ' . htmlspecialchars($fila_cliente['Apellido']) . '</td>
+                                    <td>' . htmlspecialchars($fila_cliente['Direccion']) . '</td>
+                                    <td>
+                                        <a href="#" class="btn btn-sm btn-success me-1" title="Generar Recibo"><i class="fas fa-file-invoice-dollar"></i> Recibo</a>
+                                        <a href="ver_clientes.php?id=' . htmlspecialchars($fila_cliente['ClienteID']) . '" class="btn btn-sm btn-info text-white me-1" title="Ver Detalles"><i class="fas fa-eye"></i> Ver</a>
+                                        <a href="' . $action_file . '?id=' . htmlspecialchars($fila_cliente['ClienteID']) . '" 
+                                           class="btn btn-sm ' . $btn_estado_class . '" 
+                                           title="' . $btn_estado_text . ' Cliente"
+                                           onclick="return confirm(\'¿Estás seguro de que quieres ' . strtolower($btn_estado_text) . ' a ' . htmlspecialchars($fila_cliente['Nombre']) . ' ' . htmlspecialchars($fila_cliente['Apellido']) . '?\');">
+                                           <i class="' . $btn_estado_icon . '"></i> ' . $btn_estado_text . '
+                                        </a>
+                                    </td>
+                                </tr>';
                     }
 
                     // Cerrar la tabla HTML
-                    echo '          </tbody>
+                    echo '           </tbody>
                                 </table>
                             </div>'; // Cierre de .table-responsive
                 } else {
@@ -311,10 +350,10 @@ include_once 'conexion.php';
                 "language": {
                     "url": "https://cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json" // URL correcta para DataTables 2.x
                 },
-                "paging": true,       // Habilita paginación
-                "searching": true,    // Habilita el cuadro de búsqueda
-                "ordering": true,     // Habilita ordenación de columnas
-                "info": true          // Habilita información de la tabla
+                "paging": true,      // Habilita paginación
+                "searching": true,   // Habilita el cuadro de búsqueda
+                "ordering": true,    // Habilita ordenación de columnas
+                "info": true         // Habilita información de la tabla
             });
 
             // Script para activar la pestaña de Cliente al abrir el modal
@@ -351,8 +390,8 @@ include_once 'conexion.php';
 
             // Finalmente, muestra el cuerpo del documento una vez que los scripts de seguridad se han ejecutado.
             document.body.style.display = "block";
-        })();
-    });
+            })();
+        });
     </script>
 </body>
 </html>

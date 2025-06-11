@@ -202,7 +202,6 @@ if ($conn->connect_error) {
                                             <th>Dirección Personal</th>
                                             <th>Teléfono</th>
                                             <th>Mail</th>
-                                            <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -215,15 +214,6 @@ if ($conn->connect_error) {
                                                 <td><?php echo htmlspecialchars($inquilino['InquilinoDireccionPersonal']); ?></td>
                                                 <td><?php echo htmlspecialchars($inquilino['InquilinoTelefono']); ?></td>
                                                 <td><?php echo htmlspecialchars($inquilino['InquilinoMail']); ?></td>
-                                                <td>
-                                                    <button type="button" class="btn btn-primary btn-sm ver-garantes" 
-                                                        data-bs-toggle="modal" 
-                                                        data-bs-target="#garantesModal" 
-                                                        data-inquilino-id="<?php echo htmlspecialchars($inquilino['InquilinoID']); ?>"
-                                                        data-inquilino-nombre="<?php echo htmlspecialchars($inquilino['InquilinoNombre'] . ' ' . $inquilino['InquilinoApellido']); ?>">
-                                                        <i class="fas fa-eye"></i> Ver Garantes
-                                                    </button>
-                                                </td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
