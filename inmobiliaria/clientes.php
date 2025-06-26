@@ -64,8 +64,8 @@ include_once 'conexion.php';
     <header>
         <div class="header-content">
             <div class="dropdown">
-               <a href="../login/logout.php" class="btn btn-danger">
-                <i class="fas fa-power-off"></i> Cerrar Sesión
+               <a href="../login/logout.php" class="btn btn-danger" title="Cerrar Sesión">
+                <i class="fas fa-power-off"></i>
             </a>
             </div>
 
@@ -105,7 +105,7 @@ include_once 'conexion.php';
 // Si actualmente estamos mostrando 'inactivos', el botón debería ofrecer ver 'activos'.
 // Si no estamos mostrando 'inactivos' (es decir, estamos mostrando 'activos'), el botón debería ofrecer ver 'inactivos'.
 if (isset($_GET['mostrar']) && $_GET['mostrar'] == 'inactivos') {
-    $button_class = 'btn-success'; // Por ejemplo, verde para "Ver Clientes Activos"
+    $button_class = 'btn btn-primary'; // Por ejemplo, azul para "Ver Clientes Activos"
     $button_text = 'Ver Clientes Activos';
     $button_icon = 'fas fa-user-check'; // Un ícono que sugiera "activo" o "revisar"
     $link_param = 'activos'; // El enlace dirigirá a la vista de activos
@@ -175,8 +175,12 @@ if (isset($_GET['mostrar']) && $_GET['mostrar'] == 'inactivos') {
                                     <td>' . htmlspecialchars($fila_cliente['Nombre']) . ' ' . htmlspecialchars($fila_cliente['Apellido']) . '</td>
                                     <td>' . htmlspecialchars($fila_cliente['Direccion']) . '</td>
                                     <td>
-                                        <a href="#" class="btn btn-sm btn-success me-1" title="Generar Recibo"><i class="fas fa-file-invoice-dollar"></i> Recibo</a>
-                                        <a href="ver_clientes.php?id=' . htmlspecialchars($fila_cliente['ClienteID']) . '" class="btn btn-sm btn-info text-white me-1" title="Ver Detalles"><i class="fas fa-eye"></i> Ver</a>
+                                    
+                                   <button type="button" class="btn btn-sm btn-success me-1" title="Generar Recibo" data-bs-toggle="modal" data-bs-target="#reciboModal" data-cliente-id="'.htmlspecialchars($fila_cliente['ClienteID']).'" data-cliente-nombre="'.htmlspecialchars($fila_cliente['Nombre']).' '.htmlspecialchars($fila_cliente['Apellido']).'">
+                                   <i class="fas fa-file-invoice-dollar"></i> Recibo
+                                   </button>
+                                    
+                        
                                         <a href="' . $action_file . '?id=' . htmlspecialchars($fila_cliente['ClienteID']) . '" 
                                            class="btn btn-sm ' . $btn_estado_class . '" 
                                            title="' . $btn_estado_text . ' Cliente"
@@ -338,7 +342,98 @@ if (isset($_GET['mostrar']) && $_GET['mostrar'] == 'inactivos') {
             </div>
         </div>
     </div>
-
+    
+<!-- Modal para generación de recibo -->
+<div class="modal fade" id="reciboModal" tabindex="-1" aria-labelledby="reciboModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reciboModalLabel">Generar Recibo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="formRecibo" action="generar_recibo_dompdf.php" method="GET" target="_blank">
+                <input type="hidden" name="id" id="clienteIdInput">
+                <div class="modal-body">
+                    <!-- Sección de selección de contrato -->
+                    
+                    <div class="mb-3">
+                        <label for="selectContrato" class="form-label">Contrato de Alquiler</label>
+                        <select class="form-select" id="selectContrato" name="contrato_id" required>
+                            <option value="">Cargando contratos...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="inquilinoNombre" class="form-label">Inquilino</label>
+                        <input type="text" class="form-control" id="inquilinoNombre" name="inquilino_nombre" readonly>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="numeroRecibo" class="form-label">Número de Recibo</label>
+                            <input type="text" class="form-control" id="numeroRecibo" name="numero_recibo" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="fechaRecibo" class="form-label">Fecha</label>
+                            <input type="date" class="form-control" id="fechaRecibo" name="fecha" required>
+                        </div>
+                    </div>
+                    
+                    <!-- Datos del cliente (se autocompletan) -->
+                    <div class="mb-3">
+                        <label for="nombreCliente" class="form-label">Cliente</label>
+                        <input type="text" class="form-control" id="nombreCliente" name="nombre_cliente" readonly>
+                    </div>
+                    
+                    <!-- Datos de la propiedad (se autocompletan al seleccionar contrato) -->
+                    <div class="mb-3">
+                        <label for="direccionPropiedad" class="form-label">Propiedad</label>
+                        <input type="text" class="form-control" id="direccionPropiedad" name="direccion_propiedad" readonly>
+                    </div>
+                    
+                    <!-- Monto y período -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="monto" class="form-label">Monto</label>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input type="number" class="form-control" id="monto" name="monto" step="0.01" min="0" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="periodo" class="form-label">Período</label>
+                            <input type="text" class="form-control" id="periodo" name="periodo" required>
+                        </div>
+                    </div>
+                    
+                    <!-- Concepto (se autocompleta pero es editable) -->
+                    <div class="mb-3">
+                        <label for="concepto" class="form-label">Concepto</label>
+                        <input type="text" class="form-control" id="concepto" name="concepto" value="Alquiler mensual" required>
+                    </div>
+                    
+                    <!-- Observaciones -->
+                    <div class="mb-3">
+                        <label for="observaciones" class="form-label">Observaciones (opcional)</label>
+                        <textarea class="form-control" id="observaciones" name="observaciones" rows="2"></textarea>
+                    </div>
+                    
+                    <!-- Opción de duplicado -->
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="generarDuplicado" name="generar_duplicado" checked>
+                        <label class="form-check-label" for="generarDuplicado">
+                            Incluir recibo duplicado
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Generar Recibo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="//cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
@@ -393,6 +488,58 @@ if (isset($_GET['mostrar']) && $_GET['mostrar'] == 'inactivos') {
             })();
         });
     </script>
+<script>
+$(document).ready(function () {
+    $('#reciboModal').on('show.bs.modal', function (event) {
+        const button = $(event.relatedTarget);
+        const clienteId = button.data('cliente-id');
+        const clienteNombre = button.data('cliente-nombre');
+
+        $('#clienteIdInput').val(clienteId);
+        $('#nombreCliente').val(clienteNombre);
+
+        const $selectContrato = $('#selectContrato');
+        $selectContrato.html('<option>Cargando contratos...</option>');
+
+        $.getJSON('obtener_contratos.php', { cliente_id: clienteId }, function (data) {
+            $selectContrato.empty();
+
+            if (Array.isArray(data) && data.length > 0) {
+                $selectContrato.append('<option value="">Seleccione un contrato</option>');
+                data.forEach(function (contrato) {
+                    $selectContrato.append(`
+                        <option value="${contrato.id}"
+                            data-direccion="${contrato.direccion}"
+                            data-monto="${contrato.canon_mensual}"
+                            data-inquilino="${contrato.inquilino}">
+                            Contrato #${contrato.id} - ${contrato.direccion} - ${contrato.inquilino}
+                        </option>`);
+                });
+            } else {
+                $selectContrato.append('<option value="">No hay contratos activos</option>');
+            }
+        });
+
+        // Setea automáticamente el período actual
+        const hoy = new Date();
+        const meses = [
+            'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+        ];
+        const periodo = `${meses[hoy.getMonth()]} ${hoy.getFullYear()}`;
+        $('#periodo').val(periodo);
+    });
+
+    $('#selectContrato').on('change', function () {
+        const selected = $(this).find(':selected');
+        $('#direccionPropiedad').val(selected.data('direccion') || '');
+        $('#monto').val(selected.data('monto') || '');
+        $('#inquilinoNombre').val(selected.data('inquilino') || '');
+    });
+});
+</script>
+
+
 </body>
 </html>
 

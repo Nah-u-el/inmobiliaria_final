@@ -81,15 +81,10 @@ $totalMensual = $totalRow['total_mensual'] ?? 0; // Si no hay datos, el total es
 <body>
     <header>
         <div class="header-content">
-            <div class="dropdown">
-                <button type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Menú de Navegación">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
-                        <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
-                    </svg>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">📆 Pagos del Mes</a></li>
-                    </ul>
-                </button>
+          <div class="dropdown">
+               <a href="../login/logout.php" class="btn btn-danger" title="Cerrar Sesión">
+                <i class="fas fa-power-off"></i>
+            </a>
             </div>
 
             <img src="../login/img_login/descarga.png" alt="Logo Inmobiliaria" class="logo">
@@ -121,7 +116,7 @@ $totalMensual = $totalRow['total_mensual'] ?? 0; // Si no hay datos, el total es
     </header>
     <main class="container mt-4">
         <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
-            <button type="button" class="btn btn-secondary mb-2 mb-md-0" onclick="volverCaja()">
+            <button type="button" class="btn btn-secondary" style="background-color: rgba(233, 128, 0, 0.92);" onclick="volverCaja()">
                 <i class="fas fa-arrow-left"></i> Volver a Contabilidad
             </button>
             <div class="dropdown">

@@ -52,15 +52,10 @@ if ($conn->connect_error) {
 <body>
     <header>
         <div class="header-content">
-            <div class="dropdown">
-                <button type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Menú de Navegación">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
-                        <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
-                    </svg>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">📆 Pagos del Mes</a></li>
-                    </ul>
-                </button>
+           <div class="dropdown">
+               <a href="../login/logout.php" class="btn btn-danger" title="Cerrar Sesión">
+                <i class="fas fa-power-off"></i>
+            </a>
             </div>
 
             <img src="../login/img_login/descarga.png" alt="Logo Inmobiliaria" class="logo">
@@ -116,7 +111,7 @@ if ($conn->connect_error) {
                 $stmt_check->close();
 
                 // Obtener datos del propietario (usando la tabla 'clientes' como se ve en el código original)
-                $sql_propietario = "SELECT Nombre, Apellido, DNI, Telefono FROM clientes WHERE ClienteID = ?";
+                $sql_propietario = "SELECT Nombre, Apellido, DNI, Telefono, Mail FROM clientes WHERE ClienteID = ?";
                 $stmt_propietario = $conn->prepare($sql_propietario);
                 $stmt_propietario->bind_param("i", $propietarioID);
                 $stmt_propietario->execute();
@@ -137,6 +132,7 @@ if ($conn->connect_error) {
                                         <tr><th>Apellido</th><td><?php echo htmlspecialchars($fila_propietario['Apellido']); ?></td></tr>
                                         <tr><th>DNI</th><td><?php echo htmlspecialchars($fila_propietario['DNI']); ?></td></tr>
                                         <tr><th>Teléfono</th><td><?php echo htmlspecialchars($fila_propietario['Telefono']); ?></td></tr>
+                                        <tr><th>Mail</th><td><?php echo htmlspecialchars($fila_propietario['Mail']); ?></td></tr>
                                     </tbody>
                                 </table>
                             </div>

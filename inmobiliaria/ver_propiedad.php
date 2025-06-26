@@ -90,16 +90,11 @@ if (isset($_GET['id'])) {
  <body>
   <header>
    <div class="header-content">
-    <div class="dropdown">
-     <button type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
-       <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
-      </svg>
-      <ul class="dropdown-menu">
-       <li><a class="dropdown-item" href="#">📆 Pagos del Mes</a></li>
-      </ul>
-     </button>
-    </div>
+   <div class="dropdown">
+               <a href="../login/logout.php" class="btn btn-danger" title="Cerrar Sesión">
+                <i class="fas fa-power-off"></i>
+            </a>
+            </div>
     <img src="../login/img_login/descarga.png" alt="Logo Inmobiliaria" class="logo">
     <div>
      <div class="dropdown">
@@ -180,9 +175,7 @@ if (isset($_GET['id'])) {
          <th>Fecha Ingreso</th>
          <th>Nombre</th>
          <th>Apellido</th>
-         <th>Dirección</th>
          <th>DNI</th>
-         <th>Dirección Personal</th>
          <th>Teléfono</th>
          <th>Mail</th>
         </tr>
@@ -193,9 +186,7 @@ if (isset($_GET['id'])) {
          <td><?php echo $inquilino['Fecha']; ?></td>
          <td><?php echo $inquilino['Nombre']; ?></td>
          <td><?php echo $inquilino['Apellido']; ?></td>
-         <td><?php echo $inquilino['Direccion']; ?></td>
          <td><?php echo $inquilino['DNI']; ?></td>
-         <td><?php echo $inquilino['DireccionPersonal']; ?></td>
          <td><?php echo $inquilino['Telefono']; ?></td>
          <td><?php echo $inquilino['Mail']; ?></td>
         </tr>
@@ -220,11 +211,9 @@ if (isset($_GET['id'])) {
       <table class="table table-striped table-hover">
        <thead class="table-dark">
         <tr>
-         <th>Fecha</th>
          <th>Nombre</th>
          <th>Apellido</th>
          <th>DNI</th>
-         <th>Dirección</th>
          <th>Teléfono</th>
          <th>Mail</th>
         </tr>
@@ -232,11 +221,9 @@ if (isset($_GET['id'])) {
        <tbody>
         <?php foreach ($inquilino['garantes'] as $garante): ?>
         <tr>
-         <td><?php echo $garante['Fecha']; ?></td>
          <td><?php echo $garante['Nombre']; ?></td>
          <td><?php echo $garante['Apellido']; ?></td>
          <td><?php echo $garante['DNI']; ?></td>
-         <td><?php echo $garante['Direccion']; ?></td>
          <td><?php echo $garante['Telefono']; ?></td>
          <td><?php echo $garante['Mail']; ?></td>
         </tr>

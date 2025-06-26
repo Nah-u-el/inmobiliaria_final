@@ -1,19 +1,22 @@
 <?php
 session_start();
 
-// --- INICIO DE LAS CABECERAS PARA EVITAR CACHÉ ---
-// Estas cabeceras son fundamentales para prevenir el caché del navegador,
-// especialmente el bfcache de Firefox.
+// CABECERAS PARA EVITAR CACHÉ
 header("Cache-Control: no-cache, no-store, must-revalidate, max-age=0"); // HTTP 1.1
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache"); // HTTP 1.0
 header("Expires: 0"); // Proxies
-// --- FIN DE LAS CABECERAS PARA EVITAR CACHÉ ---
 
-// Muestra mensajes de sesión (alertas) si existen
+// VERIFICACIÓN DE AUTENTICACIÓN
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+    header("Location: ../login/index.php");
+    exit;
+}
+
+// MENSAJE DE ALERTA (opcional)
 if (isset($_SESSION['mensaje'])) {
     echo "<script>alert('" . $_SESSION['mensaje'] . "');</script>";
-    unset($_SESSION['mensaje']); // Elimina el mensaje después de mostrarlo
+    unset($_SESSION['mensaje']);
 }
 
 // Incluir la conexión a la base de datos una única vez
@@ -64,14 +67,9 @@ if ($conn->connect_error) {
     <header>
         <div class="header-content">
             <div class="dropdown">
-                <button type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Menú de Navegación">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
-                        <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
-                    </svg>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">📆 Pagos del Mes</a></li>
-                    </ul>
-                </button>
+               <a href="../login/logout.php" class="btn btn-danger" title="Cerrar Sesión">
+                <i class="fas fa-power-off"></i>
+            </a>
             </div>
 
             <img src="../login/img_login/descarga.png" alt="Logo Inmobiliaria" class="logo">

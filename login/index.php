@@ -8,7 +8,14 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     exit;
 }
 ?>
-
+<script>
+window.addEventListener("pageshow", function (event) {
+  if (event.persisted) {
+    // La página fue cargada desde el bfcache (botón atrás o adelante)
+    window.location.reload(); // Fuerza recarga y vuelve a verificar la sesión
+  }
+});
+</script>
 <!DOCTYPE html>
 <html lang="es">
 <head>

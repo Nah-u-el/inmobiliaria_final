@@ -32,3 +32,37 @@ Array
 
 Valor de $id_caja después de recibirlo: 'undefined'
 ERROR: ID no válido o vacío. ID: 'undefined'
+
+--- INICIO DE EJECUCIÓN: 2025-06-25 19:25:08 ---
+Datos POST recibidos:
+Array
+(
+    [id_caja] => undefined
+    [Fecha] => 2025-06-25
+    [Concepto] => Arreglo
+    [TipoMovimiento] => recibido
+    [Monto] => 23000
+    [FormaPago] => Transferencia
+    [ClienteInmueble] => Perro
+    [Observaciones] => Alguna
+)
+
+Valor de $id_caja después de recibirlo: 'undefined'
+ERROR: ID no válido o vacío. ID: 'undefined'
+
+--- INICIO DE EJECUCIÓN: 2025-06-25 19:25:17 ---
+Datos POST recibidos:
+Array
+(
+    [id_caja] => undefined
+    [Fecha] => 2025-06-25
+    [Concepto] => Arreglo
+    [TipoMovimiento] => recibido
+    [Monto] => 23000
+    [FormaPago] => Transferencia
+    [ClienteInmueble] => Perro
+    [Observaciones] => Alguna
+)
+
+Valor de $id_caja después de recibirlo: 'undefined'
+ERROR: ID no válido o vacío. ID: 'undefined'

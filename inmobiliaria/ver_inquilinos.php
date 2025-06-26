@@ -60,15 +60,10 @@ if ($conn->connect_error) {
 <body>
     <header>
         <div class="header-content">
-            <div class="dropdown">
-                <button type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Menú de Navegación">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
-                        <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
-                    </svg>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">📆 Pagos del Mes</a></li>
-                    </ul>
-                </button>
+           <div class="dropdown">
+               <a href="../login/logout.php" class="btn btn-danger" title="Cerrar Sesión">
+                <i class="fas fa-power-off"></i>
+            </a>
             </div>
 
             <img src="../login/img_login/descarga.png" alt="Logo Inmobiliaria" class="logo">
@@ -110,7 +105,7 @@ if ($conn->connect_error) {
                 $clienteID = (int)$_GET['id']; // Asegurar que es un número entero
 
                 // Consulta para obtener los datos del cliente
-                $sql_cliente = "SELECT Nombre, Apellido, DNI, Direccion, Telefono, Mail FROM clientes WHERE ClienteID = ?";
+                $sql_cliente = "SELECT Nombre, Apellido, DNI, Telefono, Mail FROM clientes WHERE ClienteID = ?";
                 $stmt_cliente = $conn->prepare($sql_cliente);
                 $stmt_cliente->bind_param("i", $clienteID);
                 $stmt_cliente->execute();
@@ -122,9 +117,7 @@ if ($conn->connect_error) {
                 $sql_inquilinos = "SELECT 
                                     i.Nombre AS InquilinoNombre,
                                     i.Apellido AS InquilinoApellido,
-                                    i.Direccion AS InquilinoDireccion,
                                     i.DNI AS InquilinoDNI,
-                                    i.DireccionPersonal AS InquilinoDireccionPersonal,
                                     i.Telefono AS InquilinoTelefono,
                                     i.Mail AS InquilinoMail,
                                     p.Direccion AS PropiedadDireccion,
@@ -145,6 +138,7 @@ if ($conn->connect_error) {
                                     g.Direccion AS GaranteDireccion,
                                     g.Telefono AS GaranteTelefono,
                                     g.Mail AS GaranteMail,
+                                    p.Direccion AS PropiedadDireccion,
                                     i.InquilinoID,
                                     CONCAT(i.Nombre, ' ', i.Apellido) AS NombreCompletoInquilino
                                 FROM GarantesInquilinos g
@@ -170,7 +164,6 @@ if ($conn->connect_error) {
                                         <tr><th>Nombre</th><td><?php echo htmlspecialchars($cliente['Nombre']); ?></td></tr>
                                         <tr><th>Apellido</th><td><?php echo htmlspecialchars($cliente['Apellido']); ?></td></tr>
                                         <tr><th>DNI</th><td><?php echo htmlspecialchars($cliente['DNI']); ?></td></tr>
-                                        <tr><th>Dirección</th><td><?php echo htmlspecialchars($cliente['Direccion']); ?></td></tr>
                                         <tr><th>Teléfono</th><td><?php echo htmlspecialchars($cliente['Telefono']); ?></td></tr>
                                         <tr><th>Mail</th><td><?php echo htmlspecialchars($cliente['Mail']); ?></td></tr>
                                     </tbody>
@@ -196,24 +189,22 @@ if ($conn->connect_error) {
                                     <thead class="table-dark">
                                         <tr>
                                             <th>Nombre</th>
-                                            <th>Apellido</th>
-                                            <th>Dirección (Propiedad)</th>
+                                            <th>Apellido</th>                                            
                                             <th>DNI</th>
-                                            <th>Dirección Personal</th>
                                             <th>Teléfono</th>
                                             <th>Mail</th>
+                                            <th>Dirección (Propiedad)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php while ($inquilino = $result_inquilinos->fetch_assoc()) { ?>
                                             <tr>
                                                 <td><?php echo htmlspecialchars($inquilino['InquilinoNombre']); ?></td>
-                                                <td><?php echo htmlspecialchars($inquilino['InquilinoApellido']); ?></td>
-                                                <td><?php echo htmlspecialchars($inquilino['PropiedadDireccion']); ?></td>
-                                                <td><?php echo htmlspecialchars($inquilino['InquilinoDNI']); ?></td>
-                                                <td><?php echo htmlspecialchars($inquilino['InquilinoDireccionPersonal']); ?></td>
+                                                <td><?php echo htmlspecialchars($inquilino['InquilinoApellido']); ?></td>                                               
+                                                <td><?php echo htmlspecialchars($inquilino['InquilinoDNI']); ?></td>                                             
                                                 <td><?php echo htmlspecialchars($inquilino['InquilinoTelefono']); ?></td>
                                                 <td><?php echo htmlspecialchars($inquilino['InquilinoMail']); ?></td>
+                                                <td><?php echo htmlspecialchars($inquilino['PropiedadDireccion']); ?></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
@@ -242,7 +233,7 @@ if ($conn->connect_error) {
                                             <th>Nombre</th>
                                             <th>Apellido</th>
                                             <th>DNI</th>
-                                            <th>Dirección</th>
+                                            
                                             <th>Teléfono</th>
                                             <th>Mail</th>
                                             <th>Inquilino Asociado</th>
@@ -254,7 +245,7 @@ if ($conn->connect_error) {
                                                 <td><?php echo htmlspecialchars($garante['GaranteNombre']); ?></td>
                                                 <td><?php echo htmlspecialchars($garante['GaranteApellido']); ?></td>
                                                 <td><?php echo htmlspecialchars($garante['GaranteDNI']); ?></td>
-                                                <td><?php echo htmlspecialchars($garante['GaranteDireccion']); ?></td>
+                                              
                                                 <td><?php echo htmlspecialchars($garante['GaranteTelefono']); ?></td>
                                                 <td><?php echo htmlspecialchars($garante['GaranteMail']); ?></td>
                                                 <td><?php echo htmlspecialchars($garante['NombreCompletoInquilino']); ?></td>
