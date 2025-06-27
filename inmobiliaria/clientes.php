@@ -180,6 +180,7 @@ if (isset($_GET['mostrar']) && $_GET['mostrar'] == 'inactivos') {
                                    <i class="fas fa-file-invoice-dollar"></i> Recibo
                                    </button>
                                     
+                                        <a href="ver_clientes.php?id=' . htmlspecialchars($fila_cliente['ClienteID']) . '" class="btn btn-sm btn-info text-white" title="Ver Detalles"><i class="fas fa-eye"></i> Ver</a>
                         
                                         <a href="' . $action_file . '?id=' . htmlspecialchars($fila_cliente['ClienteID']) . '" 
                                            class="btn btn-sm ' . $btn_estado_class . '" 
