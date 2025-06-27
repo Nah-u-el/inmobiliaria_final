@@ -246,7 +246,7 @@ if (isset($_GET['mostrar']) && $_GET['mostrar'] == 'inactivos') {
                                 </div>
                                 <div class="mb-3">
                                     <label for="clienteDNI" class="form-label">DNI</label>
-                                    <input type="text" class="form-control" id="clienteDNI" name="DNI" placeholder="DNI" required minlength="8" maxlength="8" pattern="\d{8}" title="Debe ingresar exactamente 8 números">
+                                    <input type="number" class="form-control" id="clienteDNI" name="DNI" placeholder="DNI" required minlength="8" maxlength="8" pattern="\d{8}" title="Debe ingresar exactamente 8 números">
                                 </div>
                                 <div class="mb-3">
                                     <label for="clienteDireccionPersonal" class="form-label">Dirección Personal</label>
@@ -282,7 +282,7 @@ if (isset($_GET['mostrar']) && $_GET['mostrar'] == 'inactivos') {
                                 </div>
                                 <div class="mb-3">
                                     <label for="garante1DNI" class="form-label">DNI</label>
-                                    <input type="text" class="form-control" id="garante1DNI" name="garante1_dni" placeholder="DNI Garante ">
+                                    <input type="number" class="form-control" id="garante1DNI" name="garante1_dni" placeholder="DNI Garante " minlength="8" maxlength="8">
                                 </div>
                                 <div class="mb-3">
                                     <label for="garante1DireccionPersonal" class="form-label">Dirección Personal</label>
@@ -318,7 +318,7 @@ if (isset($_GET['mostrar']) && $_GET['mostrar'] == 'inactivos') {
                                 </div>
                                 <div class="mb-3">
                                     <label for="garante2DNI" class="form-label">DNI</label>
-                                    <input type="text" class="form-control" id="garante2DNI" name="garante2_dni" placeholder="DNI Garante ">
+                                    <input type="number" class="form-control" id="garante2DNI" name="garante2_dni" placeholder="DNI Garante " minlength="8" maxlength="8">
                                 </div>
                                 <div class="mb-3">
                                     <label for="garante2DireccionPersonal" class="form-label">Dirección Personal</label>
@@ -418,6 +418,17 @@ if (isset($_GET['mostrar']) && $_GET['mostrar'] == 'inactivos') {
                         <label for="observaciones" class="form-label">Observaciones (opcional)</label>
                         <textarea class="form-control" id="observaciones" name="observaciones" rows="2"></textarea>
                     </div>
+
+                    <div class="form-group">
+                      <label for="monto_luz">Monto Luz ($):</label>
+                      <input type="number" step="0.01" name="monto_luz" id="monto_luz" class="form-control" placeholder="0.00">
+                    </div>
+
+                    <div class="form-group">
+                         <label for="descuento">Descuento ($):</label>
+                         <input type="number" step="0.01" name="descuento" id="descuento" class="form-control" placeholder="0.00">
+                    </div>
+
                     
                     <!-- Opción de duplicado -->
                     <div class="form-check mb-3">

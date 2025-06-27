@@ -14,6 +14,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 // Obtener datos del formulario
 $datos = [
+    'descuento' => is_numeric($_GET['descuento'] ?? null) ? (float)$_GET['descuento'] : 0,
+    'monto_luz' => is_numeric($_GET['monto_luz'] ?? null) ? (float)$_GET['monto_luz'] : 0,
     'numero_recibo' => $_GET['numero_recibo'] ?? '',
     'fecha' => $_GET['fecha'] ?? date('Y-m-d'),
     'nombre_cliente' => $_GET['nombre_cliente'] ?? '',
@@ -82,23 +84,30 @@ $html = '
 
 // Función para generar un recibo individual
 function generarReciboHTML($datos, $esDuplicado = false) {
+    $monto = (float)$datos['monto'];
+    $descuento = (float)$datos['descuento'];
+    $monto_luz = (float)$datos['monto_luz'];
+    $total_final = max(0, $monto + $monto_luz - $descuento);
+
+
     $html = '
     <div class="recibo">
         <div class="header">
             <div class="title">SC INMOBILIARIA SAN CRISTOBAL</div>
-            <div>Av. San Martín 1234 - San Miguel de Tucumán</div>
+           
             <div>Tel: 381-1234567 - Email: info@scinmobiliaria.com</div>
         </div>
         
         <div style="text-align: center; font-weight: bold; margin: 10px 0; border-top: 1px solid #000; border-bottom: 1px solid #000; padding: 5px;">
             RECIBO '.($esDuplicado ? '(DUPLICADO)' : '').'
         </div>
+
+        <div style="margin: 10px 0; font-size: 13px;"><strong>Recibí de:</strong> '.htmlspecialchars($datos['inquilino_nombre']).'</div>
         
         <div class="info">
             <div><span class="info-label">N°:</span> '.htmlspecialchars($datos['numero_recibo']).'</div>
             <div><span class="info-label">Fecha:</span> '.date('d/m/Y', strtotime($datos['fecha'])).'</div>
             <div><span class="info-label">Cliente:</span> '.htmlspecialchars($datos['nombre_cliente']).'</div>
-            <div><span class="info-label">Inquilino:</span> '.htmlspecialchars($datos['inquilino_nombre']).'</div>
             <div><span class="info-label">Propiedad:</span> '.htmlspecialchars($datos['direccion_propiedad']).'</div>
             <div><span class="info-label">Período:</span> '.htmlspecialchars($datos['periodo']).'</div>
             '.($datos['contrato_id'] ? '<div><span class="info-label">Contrato:</span> #'.htmlspecialchars($datos['contrato_id']).'</div>' : '').'
@@ -111,13 +120,37 @@ function generarReciboHTML($datos, $esDuplicado = false) {
             </tr>
             <tr>
                 <td>'.htmlspecialchars($datos['concepto']).'</td>
-                <td style="text-align: right;">$'.number_format($datos['monto'], 2, ',', '.').'</td>
-            </tr>
+                <td style="text-align: right;">$'.number_format($monto, 2, ',', '.').'</td>
+                </tr>';
+            if ($datos['monto_luz'] > 0) {
+             $html .= '
+                <tr>
+                <td>Luz</td>
+            <td style="text-align: right;">$'.number_format($datos['monto_luz'], 2, ',', '.').'</td>
+            </tr>';
+            }
+
+            
+            
+
+    if ($descuento > 0) {
+        $html .= '
+            <tr>
+                <td>Descuento</td>
+                <td style="text-align: right;">-$'.number_format($descuento, 2, ',', '.').'</td>
+            </tr>';
+    }
+
+    $html .= '
             <tr class="total">
                 <td>TOTAL</td>
-                <td style="text-align: right;">$'.number_format($datos['monto'], 2, ',', '.').'</td>
+                <td style="text-align: right;">$'.number_format($total_final, 2, ',', '.').'</td>
             </tr>
-        </table>';
+        </table>
+
+        <div style="font-size: 11px; margin-top: 5px;">
+            <strong>Total en letras:</strong> '.numeroALetras($total_final).' pesos.
+        </div>';
 
     if (isset($datos['detalles_contrato'])) {
         $html .= '
@@ -125,8 +158,7 @@ function generarReciboHTML($datos, $esDuplicado = false) {
             <div><strong>Detalles del contrato:</strong></div>
             <div>Inicio: '.date('d/m/Y', strtotime($datos['detalles_contrato']['fecha_inicio'])).'</div>
             <div>Fin: '.date('d/m/Y', strtotime($datos['detalles_contrato']['fecha_fin'])).'</div>
-            <div>Monto: $'.number_format($datos['detalles_contrato']['canon_mensual'], 2, ',', '.').'</div>
-            <div>Depósito: $'.number_format($datos['detalles_contrato']['deposito'], 2, ',', '.').'</div>
+            
         </div>';
     }
 
@@ -139,25 +171,23 @@ function generarReciboHTML($datos, $esDuplicado = false) {
     }
 
     $html .= '
-        <div style="margin-top: 30px;">
-            <div style="width: 45%; display: inline-block; text-align: center;">
-                <div style="border-top: 1px solid #000; width: 80%; margin: 0 auto;"></div>
-                <div>Firma Cliente</div>
-            </div>
-            <div style="width: 45%; display: inline-block; text-align: center; margin-left: 5%;">
-                <div style="border-top: 1px solid #000; width: 80%; margin: 0 auto;"></div>
-                <div>Firma Encargado</div>
-            </div>
-        </div>
+        
         
         <div class="footer">
             Recibo válido como comprobante de pago<br>
-            SC Inmobiliaria San Cristobal - CUIT: 30-12345678-9
+            SC Inmobiliaria San Cristobal 
         </div>
     </div>';
 
     return $html;
 }
+
+
+function numeroALetras($numero) {
+    $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
+    return ucfirst($f->format($numero));
+}
+
 
 // Generar HTML
 $html .= generarReciboHTML($datos);
