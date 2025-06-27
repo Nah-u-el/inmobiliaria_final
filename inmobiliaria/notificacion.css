@@ -1,0 +1,116 @@
+/* --- Estilos del Menú Superior Naranja --- */
+:root {
+            --primary-orange: #FF8C00; /* Naranja principal, un poco más suave que FFA500 */
+            --darker-orange: #E07B00; /* Naranja para hover */
+            --light-gray-bg: #f8f8f8; /* Fondo general más claro */
+            --white-panel-bg: #ffffff; /* Fondo de los paneles */
+            --shadow-light: rgba(0, 0, 0, 0.08); /* Sombra suave */
+            --notification-red: #dc3545; /* Rojo para el badge */
+            --text-dark: #333333;
+        }        
+
+.menu-orange {
+            background-color: var(--primary-orange);
+            color: white;
+            padding: 15px 25px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 6px var(--shadow-light);
+            box-sizing: border-box; /* Incluye padding en el ancho */
+        }
+
+        .menu-orange h1 {
+            margin: 0;
+            font-size: 1.6em;
+            font-weight: 600;
+        }
+
+        /* --- Contenedor Principal de la Página --- */
+        .main-content-wrapper {
+            width: 100%;
+            max-width: 1200px; /* Ancho máximo para el contenido principal */
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px; /* Espacio entre secciones */
+        }
+
+        /* --- Estilos del Panel Blanco para los Botones --- */
+        .button-panel-white {
+            background-color: var(--white-panel-bg);
+            padding: 30px;
+            border-radius: 12px; /* Bordes más redondeados */
+            box-shadow: 0 6px 12px var(--shadow-light);
+            width: 100%;
+            max-width: 600px; /* Ancho máximo para el panel de botones */
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px; /* Espacio entre los botones */
+            margin-top: 30px; /* Margen superior para separarlo del menú */
+        }
+
+        /* --- Estilos Generales para Botones de Notificación con Badge --- */
+        .notification-wrapper {
+            position: relative;
+            display: inline-flex; /* Usar flex para centrar mejor el contenido del botón si es necesario */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -8px; /* Ajusta la posición vertical del badge */
+            right: -8px; /* Ajusta la posición horizontal del badge */
+            background-color: var(--notification-red);
+            color: white;
+            border-radius: 50%;
+            padding: 3px 8px; /* Mayor padding para mejor forma */
+            font-size: 0.75em;
+            font-weight: 700;
+            line-height: 1;
+            min-width: 20px; /* Asegura un tamaño mínimo */
+            text-align: center;
+            box-shadow: 0 0 0 3px var(--white-panel-bg); /* Borde blanco para que destaque sobre el fondo */
+            transform: scale(1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer; /* Indica que es interactivo */
+        }
+
+        .notification-badge:hover {
+            transform: scale(1.15); /* Efecto al pasar el mouse */
+            box-shadow: 0 0 0 3px var(--white-panel-bg), 0 0 10px rgba(220, 53, 69, 0.4); /* Sombra para destacar */
+        }
+
+        /* --- Opcion 1: Icono con Borde Sutil y Relleno al Hover --- */
+        .notification-button-option1 {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px; /* Espacio alrededor del icono para clic */
+            transition: transform 0.2s ease;
+            outline: none; /* Elimina el contorno al hacer clic */
+        }
+
+        .notification-button-option1 i {
+            color: var(--primary-orange); /* Color inicial del icono */
+            font-size: 2.4em; /* Tamaño del icono */
+            border: 2px solid rgba(51, 51, 51, 0.3); /* Borde gris muy suave */
+            border-radius: 8px; /* Bordes redondeados sutiles */
+            padding: 8px 12px; /* Padding interno para el icono dentro del borde */
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .notification-button-option1:hover i {
+            background-color: var(--primary-orange); /* El icono se rellena de naranja */
+            color: white; /* El icono se vuelve blanco */
+            border-color: var(--primary-orange); /* El borde se vuelve naranja */
+        }
+        .notification-button-option1:active i {
+            transform: scale(0.95); /* Pequeño efecto de presión */
+        }

@@ -49,6 +49,7 @@ include_once 'conexion.php';
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="notificacion.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="//cdn.datatables.net/2.2.2/css/dataTables.dataTables.min.css">
@@ -72,20 +73,13 @@ include_once 'conexion.php';
             <img src="../login/img_login/descarga.png" alt="SC Inmobiliaria" class="logo">
 
             <div>
-                <div class="dropdown">
-                    <button type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Opciones de Usuario">
-                        👤
-                        🔔
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">🔑 Cambiar Clave</a></li>
-                            <li><a class="dropdown-item" href="../login/logout.php">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
-                                    <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/>
-                                </svg> Cerrar sesión</a></li>
-                        </ul>
-                    </button>
-                </div>
+                <div class="notification-wrapper">
+                <button class="notification-button-option1" aria-label="Notificaciones pendientes">
+                    <i class="fas fa-bell"></i>
+                </button>
+                <span class="notification-badge">3</span>
             </div>
+</div>
         </div>
         <nav>
             <ul>
