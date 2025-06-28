@@ -114,3 +114,53 @@
         .notification-button-option1:active i {
             transform: scale(0.95); /* Pequeño efecto de presión */
         }
+        
+        .notification-badge {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}
+
+.dropdown-notifications {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 320px;
+    background: white;
+    border: 1px solid #ccc;
+    z-index: 9999;
+    max-height: 400px;
+    overflow-y: auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.dropdown-notifications li {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.notificacion-alta {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-left: 4px solid #dc3545;
+}
+
+.notificacion-media {
+    background-color: #fff3cd;
+    color: #856404;
+    border-left: 4px solid #ffc107;
+}
+
+.dropdown-notifications .btn {
+    font-size: 12px;
+    padding: 3px 6px;
+    margin-top: 4px;
+}

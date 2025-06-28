@@ -151,7 +151,8 @@ if ($conn->connect_error) {
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped">
                                     <tbody>
-                                        <tr><th>Fecha Ingreso</th><td><?php echo htmlspecialchars($fila_propietario['Fecha']); ?></td></tr>
+                                        <tr><th>Fecha Ingreso</th>
+                                        <td><?php echo htmlspecialchars($fila_propietario['Fecha']); ?></td></tr>
                                         <tr><th>Nombre</th><td><?php echo htmlspecialchars($fila_propietario['Nombre']); ?></td></tr>
                                         <tr><th>Apellido</th><td><?php echo htmlspecialchars($fila_propietario['Apellido']); ?></td></tr>
                                         <tr><th>Dirección</th><td><?php echo htmlspecialchars($fila_propietario['Direccion']); ?></td></tr>

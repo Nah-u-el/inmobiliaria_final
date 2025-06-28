@@ -72,13 +72,13 @@ include_once 'conexion.php';
 
             <img src="../login/img_login/descarga.png" alt="SC Inmobiliaria" class="logo">
 
-            <div>
-                <div class="notification-wrapper">
-                <button class="notification-button-option1" aria-label="Notificaciones pendientes">
-                    <i class="fas fa-bell"></i>
-                </button>
-                <span class="notification-badge">3</span>
-            </div>
+            <div class="notification-wrapper position-relative">
+    <button class="notification-button-option1" aria-label="Notificaciones pendientes" id="btnNotificaciones">
+        <i class="fas fa-bell"></i>
+        <span class="notification-badge d-none" id="badgeNoti">0</span>
+    </button>
+    <div class="dropdown-notifications d-none" id="notiDropdown"></div>
+</div>
 </div>
         </div>
         <nav>
@@ -541,6 +541,83 @@ $(document).ready(function () {
         $('#direccionPropiedad').val(selected.data('direccion') || '');
         $('#monto').val(selected.data('monto') || '');
         $('#inquilinoNombre').val(selected.data('inquilino') || '');
+    });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const badge = document.getElementById('badgeNoti');
+    const dropdown = document.getElementById('notiDropdown');
+    const btnNoti = document.getElementById('btnNotificaciones');
+
+    fetch('contratos_por_vencer.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.length > 0) {
+                badge.textContent = data.length;
+                badge.classList.remove('d-none');
+
+                const ul = document.createElement('ul');
+                ul.style.listStyle = 'none';
+                ul.style.margin = 0;
+                ul.style.padding = 0;
+
+                data.forEach(c => {
+                    const li = document.createElement('li');
+                    li.classList.add(c.urgencia === 'alta' ? 'notificacion-alta' : 'notificacion-media');
+
+                    const contenido = document.createElement('div');
+                    contenido.innerHTML = `
+                        <strong>Contrato #${c.id}</strong><br>
+                        ${c.direccion}<br>
+                        <small>Vence: ${c.fecha_fin}</small>
+                    `;
+
+                    const acciones = document.createElement('div');
+                    acciones.classList.add('d-flex', 'flex-column', 'align-items-end');
+
+                    const verBtn = document.createElement('a');
+                    verBtn.href = `ver_contrato.php?id=${c.id}`;
+                    verBtn.target = '_blank';
+                   
+                   
+
+                    const cerrarBtn = document.createElement('button');
+                    cerrarBtn.className = 'btn btn-sm btn-outline-secondary';
+                    cerrarBtn.textContent = 'Leído';
+                    cerrarBtn.onclick = () => {
+                        li.remove();
+                        const restantes = document.querySelectorAll('#notiDropdown li').length;
+                        badge.textContent = restantes;
+                        if (restantes === 0) {
+                            badge.classList.add('d-none');
+                            dropdown.innerHTML = '<div class="p-2 text-muted">No hay vencimientos próximos</div>';
+                        }
+                    };
+
+                    acciones.appendChild(verBtn);
+                    acciones.appendChild(cerrarBtn);
+
+                    li.appendChild(contenido);
+                    li.appendChild(acciones);
+                    ul.appendChild(li);
+                });
+
+                dropdown.innerHTML = '';
+                dropdown.appendChild(ul);
+            } else {
+                badge.classList.add('d-none');
+                dropdown.innerHTML = '<div class="p-2 text-muted">No hay vencimientos próximos</div>';
+            }
+        })
+        .catch(error => {
+            console.error('Error al cargar notificaciones:', error);
+        });
+
+    // Mostrar/ocultar dropdown al hacer clic en la campanita
+    btnNoti.addEventListener('click', () => {
+        dropdown.classList.toggle('d-none');
     });
 });
 </script>

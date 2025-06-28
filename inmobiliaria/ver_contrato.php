@@ -64,6 +64,8 @@
     <div class="container mt-4">
         <?php
         include 'conexion.php';
+        
+
 
         $propiedadID = isset($_GET['id']) ? intval($_GET['id']) : null;
 
@@ -107,6 +109,15 @@
 
                 <?php
                
+               $hoy = date('Y-m-d');
+
+$actualizar = "
+    UPDATE contratos 
+    SET estado = 'vencido' 
+    WHERE fecha_fin < '$hoy' AND estado = 'activo'
+";
+mysqli_query($conn, $actualizar);
+
                
                 // Obtener contratos junto a garantes
                 $sql = "
