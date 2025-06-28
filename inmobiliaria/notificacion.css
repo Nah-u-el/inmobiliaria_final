@@ -99,7 +99,7 @@
 
         .notification-button-option1 i {
             color: var(--primary-orange); /* Color inicial del icono */
-            font-size: 2.4em; /* Tamaño del icono */
+            font-size: 1.2em; /* Tamaño del icono */
             border: 2px solid rgba(51, 51, 51, 0.3); /* Borde gris muy suave */
             border-radius: 8px; /* Bordes redondeados sutiles */
             padding: 8px 12px; /* Padding interno para el icono dentro del borde */

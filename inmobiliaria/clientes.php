@@ -73,11 +73,11 @@ include_once 'conexion.php';
             <img src="../login/img_login/descarga.png" alt="SC Inmobiliaria" class="logo">
 
             <div class="notification-wrapper position-relative">
-    <button class="notification-button-option1" aria-label="Notificaciones pendientes" id="btnNotificaciones">
-        <i class="fas fa-bell"></i>
-        <span class="notification-badge d-none" id="badgeNoti">0</span>
-    </button>
-    <div class="dropdown-notifications d-none" id="notiDropdown"></div>
+                <button class="notification-button-option1" aria-label="Notificaciones pendientes" id="btnNotificaciones">
+                 <i class="fas fa-bell"></i>
+                 <span class="notification-badge d-none" id="badgeNoti">0</span>
+                </button>
+            <div class="dropdown-notifications d-none" id="notiDropdown"></div>
 </div>
 </div>
         </div>

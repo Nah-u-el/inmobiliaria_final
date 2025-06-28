@@ -59,6 +59,7 @@ if ($conn->connect_error) {
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="notificacion.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     </head>
@@ -74,21 +75,13 @@ if ($conn->connect_error) {
             
                <img src="../login/img_login/descarga.png" alt="SC Inmobiliaria" class="logo">
 
-            <div>
-                <div class="dropdown">
-                    <button type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Opciones de Usuario">
-                        👤
-                        🔔
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">🔑 Cambiar Clave</a></li>
-                            <li><a class="dropdown-item" href="logout.php">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
-                                    <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/>
-                                </svg> Cerrar sesión</a></li>
-                        </ul>
-                    </button>
-                </div>
-            </div>
+            <div class="notification-wrapper position-relative">
+                <button class="notification-button-option1" aria-label="Notificaciones pendientes" id="btnNotificaciones">
+                 <i class="fas fa-bell"></i>
+                 <span class="notification-badge d-none" id="badgeNoti">0</span>
+                </button>
+            <div class="dropdown-notifications d-none" id="notiDropdown"></div>
+        </div>
         </div>
         <nav>
             <ul>
@@ -423,5 +416,81 @@ $stmt->close();
             */
         });
     </script>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const badge = document.getElementById('badgeNoti');
+    const dropdown = document.getElementById('notiDropdown');
+    const btnNoti = document.getElementById('btnNotificaciones');
+
+    fetch('contratos_por_vencer.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.length > 0) {
+                badge.textContent = data.length;
+                badge.classList.remove('d-none');
+
+                const ul = document.createElement('ul');
+                ul.style.listStyle = 'none';
+                ul.style.margin = 0;
+                ul.style.padding = 0;
+
+                data.forEach(c => {
+                    const li = document.createElement('li');
+                    li.classList.add(c.urgencia === 'alta' ? 'notificacion-alta' : 'notificacion-media');
+
+                    const contenido = document.createElement('div');
+                    contenido.innerHTML = `
+                        <strong>Contrato #${c.id}</strong><br>
+                        ${c.direccion}<br>
+                        <small>Vence: ${c.fecha_fin}</small>
+                    `;
+
+                    const acciones = document.createElement('div');
+                    acciones.classList.add('d-flex', 'flex-column', 'align-items-end');
+
+                    const verBtn = document.createElement('a');
+                    verBtn.href = `ver_contrato.php?id=${c.id}`;
+                    verBtn.target = '_blank';
+                   
+                   
+
+                    const cerrarBtn = document.createElement('button');
+                    cerrarBtn.className = 'btn btn-sm btn-outline-secondary';
+                    cerrarBtn.textContent = 'Leído';
+                    cerrarBtn.onclick = () => {
+                        li.remove();
+                        const restantes = document.querySelectorAll('#notiDropdown li').length;
+                        badge.textContent = restantes;
+                        if (restantes === 0) {
+                            badge.classList.add('d-none');
+                            dropdown.innerHTML = '<div class="p-2 text-muted">No hay vencimientos próximos</div>';
+                        }
+                    };
+
+                    acciones.appendChild(verBtn);
+                    acciones.appendChild(cerrarBtn);
+
+                    li.appendChild(contenido);
+                    li.appendChild(acciones);
+                    ul.appendChild(li);
+                });
+
+                dropdown.innerHTML = '';
+                dropdown.appendChild(ul);
+            } else {
+                badge.classList.add('d-none');
+                dropdown.innerHTML = '<div class="p-2 text-muted">No hay vencimientos próximos</div>';
+            }
+        })
+        .catch(error => {
+            console.error('Error al cargar notificaciones:', error);
+        });
+
+    // Mostrar/ocultar dropdown al hacer clic en la campanita
+    btnNoti.addEventListener('click', () => {
+        dropdown.classList.toggle('d-none');
+    });
+});
+</script>
 </body>
 </html>
