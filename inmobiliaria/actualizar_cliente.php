@@ -63,6 +63,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Redirigir de vuelta a la página de ver clientes
     
-    header("Location: ver_clientes.php?id=$clienteID");
+    header("Location: propietarios.php?id=$clienteID");
     exit;
 }

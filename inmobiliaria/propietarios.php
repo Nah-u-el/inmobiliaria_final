@@ -144,6 +144,14 @@ if ($conn->connect_error) {
                                     <a href="propietarios_ver_propiedades.php?id=' . htmlspecialchars($fila_propietario['ClienteID']) . '" class="btn btn-sm btn-info text-white me-1" title="Ver Propiedades"><i class="fas fa-home"></i> Ver Propiedades</a>
                                     
                                     <a href="ver_inquilinos.php?id=' . htmlspecialchars($fila_propietario['ClienteID']) . '" class="btn btn-sm btn-secondary" title="Ver Inquilinos (Asociados)"><i class="fas fa-users"></i> Ver Inquilinos</a>
+
+                            <a href="#" class="btn btn-warning btn-sm btn-secondary edit-client-btn"
+                data-toggle="modal" data-target="#editClientModal"
+                data-client-id="' . htmlspecialchars($fila_propietario['ClienteID']) . '"
+                title="Editar Propietario (Asociados)">
+                <i class="fas fa-edit"></i> Editar Propietario
+        </a>
+
                                 </td>
                             </tr>';
                     }
@@ -303,10 +311,219 @@ if ($conn->connect_error) {
                 </div>
         </div>
     </div>
+
+    <div class="modal fade" id="editClientModal" tabindex="-1" role="dialog" aria-labelledby="editClientModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editClientModalLabel">Editar Datos del Cliente y Garantes</h5>
+                <div>
+                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div> 
+            </div>
+            <form id="editClientForm" action="actualizar_cliente.php" method="POST">
+                <div class="modal-body">
+                    <input type="hidden" name="ClienteID" id="editClienteID">
+
+                    <h4>Datos del Cliente</h4>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="editNombre">Nombre</label>
+                            <input type="text" class="form-control" id="editNombre" name="Nombre" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="editApellido">Apellido</label>
+                            <input type="text" class="form-control" id="editApellido" name="Apellido" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editDireccion">Dirección</label>
+                        <input type="text" class="form-control" id="editDireccion" name="Direccion">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="editDNI">DNI</label>
+                            <input type="text" class="form-control" id="editDNI" name="DNI" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="editDireccionPersonal">Dirección Personal</label>
+                            <input type="text" class="form-control" id="editDireccionPersonal" name="DireccionPersonal">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="editTelefono">Teléfono</label>
+                            <input type="text" class="form-control" id="editTelefono" name="Telefono">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="editMail">Mail</label>
+                            <input type="email" class="form-control" id="editMail" name="Mail">
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <h4>Datos del Garante 1</h4>
+                    <input type="hidden" name="GaranteID1" id="editGaranteID1">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="editNombreGarante1">Nombre Garante 1</label>
+                            <input type="text" class="form-control" id="editNombreGarante1" name="NombreGarante1">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="editApellidoGarante1">Apellido Garante 1</label>
+                            <input type="text" class="form-control" id="editApellidoGarante1" name="ApellidoGarante1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editDireccionGarante1">Dirección Garante 1</label>
+                        <input type="text" class="form-control" id="editDireccionGarante1" name="DireccionGarante1">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="editDNIGarante1">DNI Garante 1</label>
+                            <input type="text" class="form-control" id="editDNIGarante1" name="DNIGarante1">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="editDireccionPersonalGarante1">Dirección Personal Garante 1</label>
+                            <input type="text" class="form-control" id="editDireccionPersonalGarante1" name="DireccionPersonalGarante1">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="editTelefonoGarante1">Teléfono Garante 1</label>
+                            <input type="text" class="form-control" id="editTelefonoGarante1" name="TelefonoGarante1">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="editMailGarante1">Mail Garante 1</label>
+                            <input type="email" class="form-control" id="editMailGarante1" name="MailGarante1">
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <h4>Datos del Garante 2</h4>
+                    <input type="hidden" name="GaranteID2" id="editGaranteID2">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="editNombreGarante2">Nombre Garante 2</label>
+                            <input type="text" class="form-control" id="editNombreGarante2" name="NombreGarante2">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="editApellidoGarante2">Apellido Garante 2</label>
+                            <input type="text" class="form-control" id="editApellidoGarante2" name="ApellidoGarante2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editDireccionGarante2">Dirección Garante 2</label>
+                        <input type="text" class="form-control" id="editDireccionGarante2" name="DireccionGarante2">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="editDNIGarante2">DNI Garante 2</label>
+                            <input type="text" class="form-control" id="editDNIGarante2" name="DNIGarante2">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="editDireccionPersonalGarante2">Dirección Personal Garante 2</label>
+                            <input type="text" class="form-control" id="editDireccionPersonalGarante2" name="DireccionPersonalGarante2">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="editTelefonoGarante2">Teléfono Garante 2</label>
+                            <input type="text" class="form-control" id="editTelefonoGarante2" name="TelefonoGarante2">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="editMailGarante2">Mail Garante 2</label>
+                            <input type="email" class="form-control" id="editMailGarante2" name="MailGarante2">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
     
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="//cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
+    
+<script>
+$(document).ready(function() {
+    // When the "Editar Propietario" button is clicked
+    $('.edit-client-btn').on('click', function() {
+        var clienteID = $(this).data('client-id');
+
+        // Make an AJAX request to fetch client and guarantor data
+        // You'll need a new PHP file for this, e.g., 'get_cliente_data.php'
+        $.ajax({
+            url: 'get_cliente_data.php', // This will be a new PHP file
+            type: 'GET',
+            data: { clienteID: clienteID },
+            dataType: 'json',
+            success: function(data) {
+                if (data.success) {
+                    // Populate client fields
+                    $('#editClienteID').val(data.cliente.ClienteID);
+                    $('#editNombre').val(data.cliente.Nombre);
+                    $('#editApellido').val(data.cliente.Apellido);
+                    $('#editDireccion').val(data.cliente.Direccion);
+                    $('#editDNI').val(data.cliente.DNI);
+                    $('#editDireccionPersonal').val(data.cliente.DireccionPersonal);
+                    $('#editTelefono').val(data.cliente.Telefono);
+                    $('#editMail').val(data.cliente.Mail);
+
+                    // Populate guarantor 1 fields (if data exists)
+                    if (data.garante1) {
+                        $('#editGaranteID1').val(data.garante1.GaranteID);
+                        $('#editNombreGarante1').val(data.garante1.Nombre);
+                        $('#editApellidoGarante1').val(data.garante1.Apellido);
+                        $('#editDireccionGarante1').val(data.garante1.Direccion);
+                        $('#editDNIGarante1').val(data.garante1.DNI);
+                        $('#editDireccionPersonalGarante1').val(data.garante1.DireccionPersonal);
+                        $('#editTelefonoGarante1').val(data.garante1.Telefono);
+                        $('#editMailGarante1').val(data.garante1.Mail);
+                    } else {
+                        // Clear fields if no guarantor 1 data
+                        $('#editGaranteID1').val('');
+                        $('#editNombreGarante1, #editApellidoGarante1, #editDireccionGarante1, #editDNIGarante1, #editDireccionPersonalGarante1, #editTelefonoGarante1, #editMailGarante1').val('');
+                    }
+
+                    // Populate guarantor 2 fields (if data exists)
+                    if (data.garante2) {
+                        $('#editGaranteID2').val(data.garante2.GaranteID);
+                        $('#editNombreGarante2').val(data.garante2.Nombre);
+                        $('#editApellidoGarante2').val(data.garante2.Apellido);
+                        $('#editDireccionGarante2').val(data.garante2.Direccion);
+                        $('#editDNIGarante2').val(data.garante2.DNI);
+                        $('#editDireccionPersonalGarante2').val(data.garante2.DireccionPersonal);
+                        $('#editTelefonoGarante2').val(data.garante2.Telefono);
+                        $('#editMailGarante2').val(data.garante2.Mail);
+                    } else {
+                        // Clear fields if no guarantor 2 data
+                        $('#editGaranteID2').val('');
+                        $('#editNombreGarante2, #editApellidoGarante2, #editDireccionGarante2, #editDNIGarante2, #editDireccionPersonalGarante2, #editTelefonoGarante2, #editMailGarante2').val('');
+                    }
+
+                    // Show the modal
+                    $('#editClientModal').modal('show');
+                } else {
+                    alert('Error al cargar los datos del cliente: ' + data.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX Error:', status, error);
+                alert('Hubo un error al intentar obtener los datos. Por favor, inténtelo de nuevo.');
+            }
+        });
+    });
+});
+</script>
 
     <script>
         // Inicializa DataTables
