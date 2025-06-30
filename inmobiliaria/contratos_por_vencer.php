@@ -2,12 +2,15 @@
 require_once 'conexion.php';
 
 $sql = "
-    SELECT c.ContratoID, i.Nombre AS Inquilino, p.Direccion, c.fecha_fin
+    SELECT c.ContratoID AS id, i.Nombre AS inquilino, p.Direccion AS direccion, c.fecha_fin
     FROM contratos c
     JOIN inquilinos i ON c.InquilinoID = i.InquilinoID
     JOIN propiedades p ON c.PropiedadID = p.PropiedadID
     WHERE c.estado = 'activo'
       AND c.fecha_fin BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 30 DAY)
+      AND c.ContratoID NOT IN (
+          SELECT ContratoID FROM notificaciones_leidas
+      )
     ORDER BY c.fecha_fin ASC
 ";
 
@@ -22,11 +25,10 @@ while ($row = $result->fetch_assoc()) {
     $urgencia = $dias_restantes <= 7 ? 'alta' : 'media';
 
     $contratos[] = [
-        'id' => $row['ContratoID'],
-        'inquilino' => $row['Inquilino'],
-        'direccion' => $row['Direccion'],
+        'id' => $row['id'],
+        'inquilino' => $row['inquilino'],
+        'direccion' => $row['direccion'],
         'fecha_fin' => $fecha_fin->format('d/m/Y'),
-        'dias' => $dias_restantes,
         'urgencia' => $urgencia
     ];
 }
