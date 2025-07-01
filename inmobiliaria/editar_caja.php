@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // --- DEPURACIÓN: Muestra los valores de las variables antes de la consulta ---
     file_put_contents($debug_log_file, "Datos a actualizar:\n", FILE_APPEND);
-    file_put_contents($debug_log_file, "ID: " . $id_caja . "\n", FILE_APPEND);
+    file_put_contents($debug_log_file, "CajaID: " . $id_caja . "\n", FILE_APPEND);
     file_put_contents($debug_log_file, "Concepto: " . $concepto . "\n", FILE_APPEND);
     file_put_contents($debug_log_file, "Recibido/Enviado: " . $recibido_enviado . "\n", FILE_APPEND);
     file_put_contents($debug_log_file, "Forma de Pago: " . $forma_pago . "\n", FILE_APPEND);
@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Preparar la consulta SQL para actualizar los datos
     // La fecha no se edita en el formulario, así que no la incluimos en el UPDATE
-    $sql = "UPDATE caja SET Concepto = ?, RecibidoEnviado = ?, FormaPago = ?, ClienteInmueble = ?, Observaciones = ? WHERE ID = ?";
+    $sql = "UPDATE caja SET Concepto = ?, RecibidoEnviado = ?, FormaPago = ?, ClienteInmueble = ?, Observaciones = ? WHERE CajaID = ?";
 
     $stmt = $conn->prepare($sql);
 

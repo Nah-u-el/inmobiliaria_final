@@ -317,9 +317,9 @@ if ($conn->connect_error) {
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editClientModalLabel">Editar Datos del Cliente y Garantes</h5>
-                <div>
-                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                </div> 
+                
+                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                
             </div>
             <form id="editClientForm" action="actualizar_cliente.php" method="POST">
                 <div class="modal-body">

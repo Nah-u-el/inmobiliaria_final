@@ -66,3 +66,122 @@ Array
 
 Valor de $id_caja después de recibirlo: 'undefined'
 ERROR: ID no válido o vacío. ID: 'undefined'
+
+--- INICIO DE EJECUCIÓN: 2025-07-01 22:45:28 ---
+Datos POST recibidos:
+Array
+(
+    [id_caja] => undefined
+    [Fecha] => 2025-07-01
+    [Concepto] => sin deuda
+    [TipoMovimiento] => recibido
+    [Monto] => 5000000
+    [FormaPago] => transferencia
+    [ClienteInmueble] => nahuel
+    [Observaciones] => sin observaciones
+)
+
+Valor de $id_caja después de recibirlo: 'undefined'
+ERROR: ID no válido o vacío. ID: 'undefined'
+
+--- INICIO DE EJECUCIÓN: 2025-07-01 22:45:43 ---
+Datos POST recibidos:
+Array
+(
+    [id_caja] => undefined
+    [Fecha] => 2025-07-01
+    [Concepto] => deuda sin
+    [TipoMovimiento] => recibido
+    [Monto] => 5000000
+    [FormaPago] => transferencia
+    [ClienteInmueble] => nahuel
+    [Observaciones] => sin observaciones
+)
+
+Valor de $id_caja después de recibirlo: 'undefined'
+ERROR: ID no válido o vacío. ID: 'undefined'
+
+--- INICIO DE EJECUCIÓN: 2025-07-01 22:45:54 ---
+Datos POST recibidos:
+Array
+(
+    [id_caja] => undefined
+    [Fecha] => 2025-07-01
+    [Concepto] => deuda
+    [TipoMovimiento] => recibido
+    [Monto] => 5000000
+    [FormaPago] => transferencia
+    [ClienteInmueble] => nahuelin
+    [Observaciones] => sin observaciones
+)
+
+Valor de $id_caja después de recibirlo: 'undefined'
+ERROR: ID no válido o vacío. ID: 'undefined'
+
+--- INICIO DE EJECUCIÓN: 2025-07-01 22:48:23 ---
+Datos POST recibidos:
+Array
+(
+    [id_caja] => undefined
+    [Fecha] => 2025-07-01
+    [Concepto] => sin deuda
+    [TipoMovimiento] => recibido
+    [Monto] => 5000000
+    [FormaPago] => transferencia
+    [ClienteInmueble] => nahuel
+    [Observaciones] => sin observaciones
+)
+
+Valor de $id_caja después de recibirlo: 'undefined'
+ERROR: ID no válido o vacío. ID: 'undefined'
+
+--- INICIO DE EJECUCIÓN: 2025-07-01 22:48:34 ---
+Datos POST recibidos:
+Array
+(
+    [id_caja] => undefined
+    [Fecha] => 2025-07-01
+    [Concepto] => deuda
+    [TipoMovimiento] => recibido
+    [Monto] => 5000000
+    [FormaPago] => transferencia
+    [ClienteInmueble] => nahuelin
+    [Observaciones] => sin observaciones
+)
+
+Valor de $id_caja después de recibirlo: 'undefined'
+ERROR: ID no válido o vacío. ID: 'undefined'
+
+--- INICIO DE EJECUCIÓN: 2025-07-01 22:48:46 ---
+Datos POST recibidos:
+Array
+(
+    [id_caja] => undefined
+    [Fecha] => 2025-07-01
+    [Concepto] => deuda
+    [TipoMovimiento] => recibido
+    [Monto] => 500000
+    [FormaPago] => transferencia
+    [ClienteInmueble] => nahuel
+    [Observaciones] => sin observaciones
+)
+
+Valor de $id_caja después de recibirlo: 'undefined'
+ERROR: ID no válido o vacío. ID: 'undefined'
+
+--- INICIO DE EJECUCIÓN: 2025-07-01 22:54:36 ---
+Datos POST recibidos:
+Array
+(
+    [id_caja] => undefined
+    [Fecha] => 2025-07-01
+    [Concepto] => deudass
+    [TipoMovimiento] => recibido
+    [Monto] => 5000000
+    [FormaPago] => transferencia
+    [ClienteInmueble] => nahuel
+    [Observaciones] => sin observaciones
+)
+
+Valor de $id_caja después de recibirlo: 'undefined'
+ERROR: ID no válido o vacío. ID: 'undefined'

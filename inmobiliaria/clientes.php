@@ -583,8 +583,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const verBtn = document.createElement('a');
                     verBtn.href = `ver_contrato.php?id=${c.id}`;
                     verBtn.target = '_blank';
-                    verBtn.textContent = 'Ver';
-                    verBtn.className = 'btn btn-sm btn-primary mb-1';
+                    
 
                     const cerrarBtn = document.createElement('button');
                     cerrarBtn.className = 'btn btn-sm btn-outline-secondary';

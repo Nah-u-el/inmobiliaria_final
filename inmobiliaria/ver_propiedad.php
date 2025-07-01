@@ -167,7 +167,7 @@ if (isset($_GET['id'])) {
       <table class="table table-striped table-hover">
        <thead class="table-dark">
         <tr>
-         <th>Fecha Ingreso</th>
+         
          <th>Nombre</th>
          <th>Apellido</th>
          <th>DNI</th>
@@ -178,7 +178,7 @@ if (isset($_GET['id'])) {
        <tbody>
         <?php foreach ($inquilinos as $inquilino): ?>
         <tr>
-         <td><?php echo $inquilino['Fecha']; ?></td>
+         
          <td><?php echo $inquilino['Nombre']; ?></td>
          <td><?php echo $inquilino['Apellido']; ?></td>
          <td><?php echo $inquilino['DNI']; ?></td>

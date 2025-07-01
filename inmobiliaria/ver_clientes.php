@@ -87,7 +87,7 @@ if ($conn->connect_error) {
             <ul>
                 <li><a href="clientes.php"  class="active"><i class="fas fa-users"></i> Clientes</a></li>
                 <li><a href="propietarios.php"><i class="fas fa-user-tie"></i> Propietarios</a></li>
-                <li><a href="garantes.php"><i class="fas fa-home"></i> garantes</a></li>
+                <li><a href="propiedades.php"><i class="fas fa-home"></i> Propiedades</a></li>
                 <li><a href="contabilidad.php"><i class="fas fa-file-invoice-dollar"></i> Contabilidad</a></li>
             </ul>
         </nav>
@@ -158,6 +158,45 @@ if ($conn->connect_error) {
                             </div>
                         </div>
                     </div>
+                    <?php
+// Obtener los garantes asociados al propietario
+$sql_garantes = "SELECT Nombre, Apellido, DNI, Telefono, Mail, Fecha FROM garantes WHERE ClienteID = ?";
+$stmt_garantes = $conn->prepare($sql_garantes);
+if ($stmt_garantes) {
+    $stmt_garantes->bind_param("i", $propietarioID);
+    $stmt_garantes->execute();
+    $result_garantes = $stmt_garantes->get_result();
+
+    if ($result_garantes->num_rows > 0) {
+        echo '<div class="card shadow-sm mb-4">';
+        echo '<div class="card-header bg-secondary text-white">';
+        echo '<h5 class="mb-0">Garantes Asociados</h5>';
+        echo '</div>';
+        echo '<div class="card-body">';
+        echo '<div class="table-responsive">';
+        echo '<table class="table table-bordered table-striped">';
+        echo '<thead><tr><th>Fecha</th><th>Nombre</th><th>Apellido</th><th>DNI</th><th>Teléfono</th><th>Mail</th></tr></thead>';
+        echo '<tbody>';
+        while ($g = $result_garantes->fetch_assoc()) {
+            echo '<tr>';
+            echo '<td>' . htmlspecialchars($g['Fecha']) . '</td>';
+            echo '<td>' . htmlspecialchars($g['Nombre']) . '</td>';
+            echo '<td>' . htmlspecialchars($g['Apellido']) . '</td>';
+            echo '<td>' . htmlspecialchars($g['DNI']) . '</td>';
+            echo '<td>' . htmlspecialchars($g['Telefono']) . '</td>';
+            echo '<td>' . htmlspecialchars($g['Mail']) . '</td>';
+            echo '</tr>';
+        }
+        echo '</tbody></table></div></div></div>';
+    } else {
+        echo '<div class="alert alert-info">Este propietario no tiene garantes asociados.</div>';
+    }
+    $stmt_garantes->close();
+} else {
+    echo '<div class="alert alert-danger">Error al cargar los garantes: ' . $conn->error . '</div>';
+}
+?>
+
                     <?php
                 } else {
                     echo '<div class="alert bg-warning" role="alert">No se encontraron datos del propietario.</div>';

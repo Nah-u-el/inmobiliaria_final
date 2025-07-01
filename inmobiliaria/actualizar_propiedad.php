@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Ejecutar la consulta
     if ($stmt->execute()) {
-        header("Location: propiedades.php"); // Redireccionar a la página de propiedades
+        header("Location: propietarios.php"); // Redireccionar a la página de propiedades
         exit();
     } else {
         die('Error al actualizar la propiedad: ' . $stmt->error); // Detener la ejecución y mostrar el error

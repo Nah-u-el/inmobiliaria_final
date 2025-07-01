@@ -319,28 +319,37 @@ if ($conn->connect_error) {
                         </div>
                     </div>
 
-                    <h6 class="mt-4 mb-2">Garante 2 (Opcional)</h6>
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <input type="text" name="Garante2Nombre" placeholder="Nombre" class="form-control">
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" name="Garante2Apellido" placeholder="Apellido" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <input type="text" name="Garante2DNI" placeholder="DNI" class="form-control">
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" name="Garante2Telefono" placeholder="Telefono" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <input type="text" name="Garante2Mail" placeholder="Mail" class="form-control">
-                        </div>
-                    </div>
+                    <!-- Botón para mostrar el segundo garante -->
+<button type="button" class="btn btn-outline-primary btn-sm mb-3" id="mostrarGarante2">
+    + Agregar Garante 2
+</button>
+
+<!-- Campos del segundo garante (ocultos inicialmente) -->
+<div id="camposGarante2" style="display: none;">
+    <h6 class="mt-4 mb-2">Garante 2</h6>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <input type="text" name="Garante2Nombre" placeholder="Nombre" class="form-control">
+        </div>
+        <div class="col-md-6">
+            <input type="text" name="Garante2Apellido" placeholder="Apellido" class="form-control">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <input type="text" name="Garante2DNI" placeholder="DNI" class="form-control">
+        </div>
+        <div class="col-md-6">
+            <input type="text" name="Garante2Telefono" placeholder="Teléfono" class="form-control">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <input type="text" name="Garante2Mail" placeholder="Mail" class="form-control">
+        </div>
+    </div>
+</div>
+
 
                     <h6 class="mt-4 mb-2">Fechas del Contrato</h6>
                     <div class="row">
@@ -476,6 +485,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const btn = document.getElementById('mostrarGarante2');
+        const campos = document.getElementById('camposGarante2');
+
+        btn.addEventListener('click', function () {
+            campos.style.display = 'block';
+            btn.style.display = 'none'; // Oculta el botón después de hacer clic
+        });
+    });
+</script>
+
 
 
 </body>

@@ -255,10 +255,10 @@ if ($conn->connect_error) {
                         </div>
                         <div class="mb-3">
                             <label for="estado" class="form-label">Estado</label>
-                            <select class="form-control" id="estado" name="estado">
+                            <select class="form-control" id="Estado" name="estado" required>
                                 <option value="alquilada">Alquilada</option>
                                 <option value="en venta">En Venta</option>
-                                <option value="disponible">Disponible</option> </select>
+                                 </select>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
