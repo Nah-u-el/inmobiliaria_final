@@ -240,7 +240,7 @@ if (isset($_GET['mostrar']) && $_GET['mostrar'] == 'inactivos') {
                                 </div>
                                 <div class="mb-3">
                                     <label for="clienteDNI" class="form-label">DNI</label>
-                                    <input type="number" class="form-control" id="clienteDNI" name="DNI" placeholder="DNI" required minlength="8" maxlength="8" pattern="\d{8}" title="Debe ingresar exactamente 8 números">
+                                    <input type="number" class="form-control" id="clienteDNI" name="DNI" placeholder="DNI" required min="8" max="8" pattern="\d{8}" title="Debe ingresar exactamente 8 números">
                                 </div>
                                 <div class="mb-3">
                                     <label for="clienteDireccionPersonal" class="form-label">Dirección Personal</label>

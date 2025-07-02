@@ -252,7 +252,7 @@ if ($conn->connect_error) {
                                 </div>
                                 <div class="mb-3">
                                     <label for="garante1DNI" class="form-label">DNI</label>
-                                    <input type="text" class="form-control" id="garante1DNI" name="garante1_dni" placeholder="DNI Garante">
+                                    <input type="text" class="form-control" id="garante1DNI" name="garante1_dni" placeholder="DNI Garante" minlength="8" maxlength="8" pattern="\d{8}" >
                                 </div>
                                 <div class="mb-3">
                                     <label for="garante1DireccionPersonal" class="form-label">Dirección Personal</label>
@@ -666,6 +666,46 @@ document.addEventListener('DOMContentLoaded', () => {
         dropdown.classList.toggle('d-none');
     });
 });
+</script>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Función para aplicar la restricción a un input específico
+    function applyNumericDniRestriction(inputElementId) {
+        const input = document.getElementById(inputElementId);
+        if (input) {
+            input.addEventListener('input', function() {
+                let value = this.value;
+                this.value = value.replace(/[^0-9]/g, '');
+            });
+        } else {
+            console.warn(`Elemento con ID "${inputElementId}" no encontrado.`);
+        }
+    }
+
+    // Aplica la restricción al DNI del propietario
+    applyNumericDniRestriction('propietarioDNI');
+
+    // Aplica la restricción al DNI del garante
+    applyNumericDniRestriction('garante1DNI');
+    
+    // Aplica la restricción al DNI del garante2
+    applyNumericDniRestriction('garante2DNI');
+
+    // Aplica la restricción al DNI del editar propietario
+    applyNumericDniRestriction('editDNI');
+
+    // Aplica la restricción al DNI del editar garante
+    applyNumericDniRestriction('editDNIGarante1');
+
+    // Aplica la restricción al DNI del editar garante2
+    applyNumericDniRestriction('garante2_dni');
+
+    // Si tuvieras más, simplemente llamas a la función con el ID correspondiente
+    // applyNumericDniRestriction('otroDNI');
+});
+
 </script>
 
 </body>

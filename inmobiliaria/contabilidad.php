@@ -214,7 +214,7 @@ include_once 'conexion.php';
                 </div>
                 <div class="modal-body">
                     <form id="editCajaForm" action="editar_caja.php" method="POST">
-                        <input type="hidden" id="edit_id_caja" name="id_caja">
+                        <input type="hidden" id="edit_id_caja" name="CajaID">
                         <div class="mb-3">
                             <label for="edit_fecha" class="form-label">Fecha</label>
                             <input type="text" class="form-control" id="edit_fecha" name="Fecha" readonly>
@@ -313,7 +313,7 @@ include_once 'conexion.php';
 
         // Function to open the edit modal and populate data
         function editarCaja(cajaData) {
-            document.getElementById('edit_id_caja').value = cajaData.ID;
+            document.getElementById('edit_id_caja').value = cajaData.CajaID;
             document.getElementById('edit_fecha').value = cajaData.Fecha;
             document.getElementById('edit_concepto').value = cajaData.Concepto;
             
@@ -345,7 +345,7 @@ include_once 'conexion.php';
         // --- Manejo del formulario de edición (editCajaForm) con fetch ---
         // (Recomiendo que editar_caja.php también redirija después de éxito)
         document.getElementById('editCajaForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Evitar el envío normal del formulario
+         //   event.preventDefault(); // Evitar el envío normal del formulario
 
             const formData = new FormData(this);
             const tipoMovimiento = document.getElementById('edit_tipo_movimiento').value;

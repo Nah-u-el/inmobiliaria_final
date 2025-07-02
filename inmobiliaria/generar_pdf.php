@@ -40,7 +40,7 @@ $html = "
         <style>
             body {
                 font-family: Arial, sans-serif;
-                margin: 40px;
+                margin: 10px;
                 color: #333;
             }
             h1, h3 {
@@ -61,7 +61,7 @@ $html = "
             }
             .linea {
                 border-top: 1px solid #000;
-                margin-top: 50px;
+                margin-top: 25px;
                 width: 80%;
                 margin-left: auto;
                 margin-right: auto;
@@ -76,12 +76,6 @@ $html = "
         </style>
     </head>
     <body>
-        <div class='logo'>
-            <img src='./descarga.png' alt='Logo Inmobiliaria'>
-        </div>
-
-        <h1>Contrato de Alquiler</h1>
-
         <div class='section'>
             <h3>Propiedad</h3>
             <p><strong>Dirección:</strong> {$data['Direccion']}, {$data['Ciudad']}</p>
