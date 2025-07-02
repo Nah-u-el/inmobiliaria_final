@@ -185,3 +185,20 @@ Array
 
 Valor de $id_caja después de recibirlo: 'undefined'
 ERROR: ID no válido o vacío. ID: 'undefined'
+
+--- INICIO DE EJECUCIÓN: 2025-07-02 15:55:18 ---
+Datos POST recibidos:
+Array
+(
+    [id_caja] => undefined
+    [Fecha] => 2025-07-02
+    [Concepto] => reparacioness
+    [TipoMovimiento] => recibido
+    [Monto] => 20000
+    [FormaPago] => cheque
+    [ClienteInmueble] => roberto
+    [Observaciones] => ninguna
+)
+
+Valor de $id_caja después de recibirlo: 'undefined'
+ERROR: ID no válido o vacío. ID: 'undefined'
