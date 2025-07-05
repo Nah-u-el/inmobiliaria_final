@@ -12,16 +12,16 @@ error_reporting(E_ALL);
 // In your JavaScript, make sure you have COMMENTED OUT this line:
 // event.preventDefault();
 // Once you've tested this PHP block, you can uncomment event.preventDefault() again.
-echo "<pre>--- PHP Debug Info ---<br>";
-echo "Received POST data:<br>";
-print_r($_POST);
+//echo "<pre>--- PHP Debug Info ---<br>";
+//echo "Received POST data:<br>";
+//print_r($_POST);
 
 $received_caja_id = isset($_POST['CajaID']) ? $_POST['CajaID'] : 'NOT SET';
 $parsed_caja_id = intval($received_caja_id);
 
-echo "Raw CajaID from POST: " . $received_caja_id . "<br>";
-echo "Parsed CajaID (intval): " . $parsed_caja_id . "<br>";
-echo "----------------------<br>";
+//echo "Raw CajaID from POST: " . $received_caja_id . "<br>";
+//echo "Parsed CajaID (intval): " . $parsed_caja_id . "<br>";
+//echo "----------------------<br>";
 // --- END DEBUGGING BLOCK ---
 
 // Original check for required data

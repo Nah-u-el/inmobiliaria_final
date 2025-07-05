@@ -36,10 +36,12 @@ include_once 'conexion.php';
     <link rel="icon" type="image/png" href="../login/img/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="../login/img/favicon-32x32.png">
 
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" />
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css"> 
     <link rel="stylesheet" href="notificacion.css"> 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="//cdn.datatables.net/2.2.2/css/dataTables.dataTables.min.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -459,6 +461,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 </script>
+
+<footer class="bg-dark text-white pt-4 pb-2 mt-5">
+  <div class="container">
+    <div class="row">
+      <!-- Empresa -->
+      <div class="col-md-3 mb-3">
+        <h5>NAvigate</h5>
+        <p>Tu confianza, nuestra prioridad.</p>
+      </div>
+
+      <!-- Contacto -->
+      <div class="col-md-3 mb-3">
+        <h6>Contacto</h6>
+        <p>Email: nahuelabalos77@gmail.com</p>
+        <p>Tel: 3408-579184</p>
+      </div>
+
+    <div class="text-center mt-3 border-top pt-2" style="font-size: 0.9rem;">
+      &copy; <?php echo date("Y"); ?> NAvigate. Todos los derechos reservados.
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
