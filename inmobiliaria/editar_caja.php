@@ -3,25 +3,25 @@
 require_once 'conexion.php';
 
 // IMPORTANT: Keep these enabled for debugging, comment out in production
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 
 // --- START DEBUGGING BLOCK ---
 // Temporarily disable the JavaScript prevention to see PHP output directly
 // In your JavaScript, make sure you have COMMENTED OUT this line:
 // event.preventDefault();
 // Once you've tested this PHP block, you can uncomment event.preventDefault() again.
-echo "<pre>--- PHP Debug Info ---<br>";
-echo "Received POST data:<br>";
-print_r($_POST);
+//echo "<pre>--- PHP Debug Info ---<br>";
+//echo "Received POST data:<br>";
+//print_r($_POST);
 
 $received_caja_id = isset($_POST['CajaID']) ? $_POST['CajaID'] : 'NOT SET';
 $parsed_caja_id = intval($received_caja_id);
 
-echo "Raw CajaID from POST: " . $received_caja_id . "<br>";
-echo "Parsed CajaID (intval): " . $parsed_caja_id . "<br>";
-echo "----------------------<br>";
+//echo "Raw CajaID from POST: " . $received_caja_id . "<br>";
+//echo "Parsed CajaID (intval): " . $parsed_caja_id . "<br>";
+//echo "----------------------<br>";
 // --- END DEBUGGING BLOCK ---
 
 // Original check for required data

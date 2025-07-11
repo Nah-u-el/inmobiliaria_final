@@ -313,6 +313,8 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('contratos_por_vencer.php')
         .then(response => response.json())
         .then(data => {
+            console.log("Notificaciones:", data);
+
             if (data.length > 0) {
                 badge.textContent = data.length;
                 badge.classList.remove('d-none');
@@ -325,6 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 data.forEach(c => {
                     const li = document.createElement('li');
                     li.classList.add(c.urgencia === 'alta' ? 'notificacion-alta' : 'notificacion-media');
+                    li.classList.add('p-2', 'border-bottom');
 
                     const contenido = document.createElement('div');
                     contenido.innerHTML = `
@@ -334,25 +337,33 @@ document.addEventListener('DOMContentLoaded', () => {
                     `;
 
                     const acciones = document.createElement('div');
-                    acciones.classList.add('d-flex', 'flex-column', 'align-items-end');
+                    acciones.classList.add('d-flex', 'flex-column', 'align-items-end', 'mt-1');
 
                     const verBtn = document.createElement('a');
                     verBtn.href = `ver_contrato.php?id=${c.id}`;
                     verBtn.target = '_blank';
-                   
-                   
+                    
 
                     const cerrarBtn = document.createElement('button');
                     cerrarBtn.className = 'btn btn-sm btn-outline-secondary';
                     cerrarBtn.textContent = 'Leído';
                     cerrarBtn.onclick = () => {
-                        li.remove();
-                        const restantes = document.querySelectorAll('#notiDropdown li').length;
-                        badge.textContent = restantes;
-                        if (restantes === 0) {
-                            badge.classList.add('d-none');
-                            dropdown.innerHTML = '<div class="p-2 text-muted">No hay vencimientos próximos</div>';
-                        }
+                        fetch('marcar_leido.php', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                            body: 'contrato_id=' + c.id
+                        }).then(res => res.json())
+                          .then(resp => {
+                              if (resp.success) {
+                                  li.remove();
+                                  const restantes = document.querySelectorAll('#notiDropdown li').length;
+                                  badge.textContent = restantes;
+                                  if (restantes === 0) {
+                                      badge.classList.add('d-none');
+                                      dropdown.innerHTML = '<div class="p-2 text-muted">No hay vencimientos próximos</div>';
+                                  }
+                              }
+                          });
                     };
 
                     acciones.appendChild(verBtn);
@@ -374,13 +385,11 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error al cargar notificaciones:', error);
         });
 
-    // Mostrar/ocultar dropdown al hacer clic en la campanita
     btnNoti.addEventListener('click', () => {
         dropdown.classList.toggle('d-none');
     });
 });
 </script>
-
   </main>
  </body>
  </html>

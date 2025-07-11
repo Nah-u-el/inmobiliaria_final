@@ -240,7 +240,7 @@ if (isset($_GET['mostrar']) && $_GET['mostrar'] == 'inactivos') {
                                 </div>
                                 <div class="mb-3">
                                     <label for="clienteDNI" class="form-label">DNI</label>
-                                    <input type="number" class="form-control" id="clienteDNI" name="DNI" placeholder="DNI" required min="8" max="8" pattern="\d{8}" title="Debe ingresar exactamente 8 números">
+                                    <input type="text" class="form-control" id="clienteDNI" name="DNI" placeholder="DNI" required minlength="8" maxlength="8" pattern="\d{8}" title="Debe ingresar exactamente 8 números">
                                 </div>
                                 <div class="mb-3">
                                     <label for="clienteDireccionPersonal" class="form-label">Dirección Personal</label>
@@ -260,35 +260,35 @@ if (isset($_GET['mostrar']) && $_GET['mostrar'] == 'inactivos') {
                                 <p class="alert alert-info">Ingresa los datos del primer garante. Estos se guardarán junto con el cliente.</p>
                                 <div class="mb-3">
                                     <label for="garante1Fecha" class="form-label">Fecha de Ingreso</label>
-                                    <input type="date" class="form-control" id="garante1Fecha" name="garante1_fecha">
+                                    <input type="date" class="form-control" id="garante1Fecha" name="garante1_fecha" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="garante1Nombre" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control" id="garante1Nombre" name="garante1_nombre" placeholder="Nombre Garante ">
+                                    <input type="text" class="form-control" id="garante1Nombre" name="garante1_nombre" placeholder="Nombre Garante " required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="garante1Apellido" class="form-label">Apellido</label>
-                                    <input type="text" class="form-control" id="garante1Apellido" name="garante1_apellido" placeholder="Apellido Garante ">
+                                    <input type="text" class="form-control" id="garante1Apellido" name="garante1_apellido" placeholder="Apellido Garante " required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="garante1Direccion" class="form-label">Dirección</label>
-                                    <input type="text" class="form-control" id="garante1Direccion" name="garante1_direccion" placeholder="Dirección Garante ">
+                                    <input type="text" class="form-control" id="garante1Direccion" name="garante1_direccion" placeholder="Dirección Garante " required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="garante1DNI" class="form-label">DNI</label>
-                                    <input type="number" class="form-control" id="garante1DNI" name="garante1_dni" placeholder="DNI Garante " minlength="8" maxlength="8">
+                                    <input type="text" class="form-control" id="garante1DNI" name="garante1_dni" placeholder="DNI Garante " minlength="8" maxlength="8" pattern="\d{8}" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="garante1DireccionPersonal" class="form-label">Dirección Personal</label>
-                                    <input type="text" class="form-control" id="garante1DireccionPersonal" name="garante1_direccion_personal" placeholder="Dirección Personal Garante ">
+                                    <input type="text" class="form-control" id="garante1DireccionPersonal" name="garante1_direccion_personal" placeholder="Dirección Personal Garante " required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="garante1Telefono" class="form-label">Teléfono</label>
-                                    <input type="tel" class="form-control" id="garante1Telefono" name="garante1_telefono" placeholder="Teléfono Garante ">
+                                    <input type="tel" class="form-control" id="garante1Telefono" name="garante1_telefono" placeholder="Teléfono Garante " required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="garante1Mail" class="form-label">Correo Electrónico</label>
-                                    <input type="email" class="form-control" id="garante1Mail" name="garante1_mail" placeholder="Mail Garante ">
+                                    <input type="email" class="form-control" id="garante1Mail" name="garante1_mail" placeholder="Mail Garante " required>
                                 </div>
                             </div>
 
@@ -312,7 +312,7 @@ if (isset($_GET['mostrar']) && $_GET['mostrar'] == 'inactivos') {
                                 </div>
                                 <div class="mb-3">
                                     <label for="garante2DNI" class="form-label">DNI</label>
-                                    <input type="number" class="form-control" id="garante2DNI" name="garante2_dni" placeholder="DNI Garante " minlength="8" maxlength="8">
+                                    <input type="text" class="form-control" id="garante2DNI" name="garante2_dni" placeholder="DNI Garante " minlength="8" maxlength="8" pattern="\d{8}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="garante2DireccionPersonal" class="form-label">Dirección Personal</label>
@@ -632,7 +632,45 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+<script>
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Función para aplicar la restricción a un input específico
+    function applyNumericDniRestriction(inputElementId) {
+        const input = document.getElementById(inputElementId);
+        if (input) {
+            input.addEventListener('input', function() {
+                let value = this.value;
+                this.value = value.replace(/[^0-9]/g, '');
+            });
+        } else {
+            console.warn(`Elemento con ID "${inputElementId}" no encontrado.`);
+        }
+    }
+
+    // Aplica la restricción al DNI del propietario
+    applyNumericDniRestriction('clienteDNI');
+
+    // Aplica la restricción al DNI del garante
+    applyNumericDniRestriction('garante1DNI');
+    
+    // Aplica la restricción al DNI del garante2
+    applyNumericDniRestriction('garante2DNI');
+
+    // Aplica la restricción al DNI del editar propietario
+    applyNumericDniRestriction('editDNI');
+
+    // Aplica la restricción al DNI del editar garante
+    applyNumericDniRestriction('editDNIGarante1');
+
+    // Aplica la restricción al DNI del editar garante2
+    applyNumericDniRestriction('garante2_dni');
+
+    // Si tuvieras más, simplemente llamas a la función con el ID correspondiente
+    // applyNumericDniRestriction('otroDNI');
+});
+
+</script>
 
 </body>
 </html>
