@@ -657,6 +657,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Aplica la restricción al DNI del garante2
     applyNumericDniRestriction('garante2DNI');
 
+<<<<<<< HEAD
     // Aplica la restricción al DNI del editar propietario
     applyNumericDniRestriction('editDNI');
 
@@ -671,6 +672,29 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 </script>
+=======
+<footer class="bg-dark text-white pt-4 pb-2 mt-5">
+  <div class="container">
+    <div class="row">
+      <!-- Empresa -->
+      <div class="col-md-3 mb-3">
+        <h5>NAvigate</h5>
+        <p>Tu confianza, nuestra prioridad.</p>
+      </div>
+
+      <!-- Contacto -->
+      <div class="col-md-3 mb-3">
+        <h6>Contacto</h6>
+        <p>Email: nahuelabalos77@gmail.com</p>
+        <p>Tel: 3408-579184</p>
+      </div>
+
+    <div class="text-center mt-3 border-top pt-2" style="font-size: 0.9rem;">
+      &copy; <?php echo date("Y"); ?> NAvigate. Todos los derechos reservados.
+    </div>
+  </div>
+</footer>
+>>>>>>> 2f74519c738a2f82bb1faa6d63c1289b2e2777c0
 
 </body>
 </html>

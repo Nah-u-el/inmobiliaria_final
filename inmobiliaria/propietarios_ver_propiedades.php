@@ -192,7 +192,14 @@ if ($conn->connect_error) {
                                                             data-nropartida="<?php echo htmlspecialchars($fila_propiedad['NroPartida']); ?>"
                                                             data-estado="<?php echo htmlspecialchars($fila_propiedad['Estado']); ?>">
                                                             <i class="fas fa-edit"></i> Editar
-                                                    </button>
+                                                    </button>        
+                                                    <form method="POST" action="eliminar_propiedad.php" class="d-inline" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta propiedad?');">
+                                                            <input type="hidden" name="propiedad_id" value="<?php echo htmlspecialchars($fila_propiedad['PropiedadID']); ?>">
+                                                            <input type="hidden" name="propietario_id" value="<?php echo htmlspecialchars($propietarioID); ?>">
+                                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                            <i class="fas fa-trash-alt"></i> Eliminar
+                                                            </button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         <?php } ?>
