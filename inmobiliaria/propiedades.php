@@ -284,7 +284,7 @@ if ($conn->connect_error) {
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <input type="text" name="InquilinoDNI" placeholder="DNI" class="form-control" required>
+                            <input type="text" id="InquilinoDNI" name="InquilinoDNI" placeholder="DNI" class="form-control" minlength="8" maxlength="8" pattern="\d{8}" required>
                         </div>
                     </div>    
                     <div class="row mb-3">
@@ -307,7 +307,7 @@ if ($conn->connect_error) {
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <input type="text" name="Garante1DNI" placeholder="DNI" class="form-control" required>
+                            <input type="text" id="GaranteDNI" name="Garante1DNI" placeholder="DNI" class="form-control" minlength="8" maxlength="8" pattern="\d{8}" required>
                         </div>
                         <div class="col-md-6">
                             <input type="text" name="Garante1Telefono" placeholder="Telefono" class="form-control" required>
@@ -337,7 +337,7 @@ if ($conn->connect_error) {
     </div>
     <div class="row mb-3">
         <div class="col-md-6">
-            <input type="text" name="Garante2DNI" placeholder="DNI" class="form-control">
+            <input type="text" id="Garante2DNI" name="Garante2DNI" placeholder="DNI" class="form-control" minlength="8" maxlength="8" pattern="\d{8}">
         </div>
         <div class="col-md-6">
             <input type="text" name="Garante2Telefono" placeholder="Teléfono" class="form-control">
@@ -506,6 +506,47 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 </script>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Función para aplicar la restricción a un input específico
+    function applyNumericDniRestriction(inputElementId) {
+        const input = document.getElementById(inputElementId);
+        if (input) {
+            input.addEventListener('input', function() {
+                let value = this.value;
+                this.value = value.replace(/[^0-9]/g, '');
+            });
+        } else {
+            console.warn(`Elemento con ID "${inputElementId}" no encontrado.`);
+        }
+    }
+
+    // Aplica la restricción al DNI del propietario
+    applyNumericDniRestriction('InquilinoDNI');
+
+    // Aplica la restricción al DNI del garante
+    applyNumericDniRestriction('GaranteDNI');
+    
+    // Aplica la restricción al DNI del garante2
+    applyNumericDniRestriction('Garante2DNI');
+
+    // Aplica la restricción al DNI del editar propietario
+    applyNumericDniRestriction('editDNI');
+
+    // Aplica la restricción al DNI del editar garante
+    applyNumericDniRestriction('editDNIGarante1');
+
+    // Aplica la restricción al DNI del editar garante2
+    applyNumericDniRestriction('editDNIGarante2');
+
+    // Si tuvieras más, simplemente llamas a la función con el ID correspondiente
+    // applyNumericDniRestriction('otroDNI');
+});
+
+</script>
+
 
 <footer class="bg-dark text-white pt-4 pb-2 mt-5">
   <div class="container">

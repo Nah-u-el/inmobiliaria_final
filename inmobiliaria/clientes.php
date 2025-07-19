@@ -657,7 +657,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Aplica la restricción al DNI del garante2
     applyNumericDniRestriction('garante2DNI');
 
-<<<<<<< HEAD
     // Aplica la restricción al DNI del editar propietario
     applyNumericDniRestriction('editDNI');
 
@@ -665,14 +664,14 @@ document.addEventListener('DOMContentLoaded', function() {
     applyNumericDniRestriction('editDNIGarante1');
 
     // Aplica la restricción al DNI del editar garante2
-    applyNumericDniRestriction('garante2_dni');
+    applyNumericDniRestriction('editDNIGarante2');
 
     // Si tuvieras más, simplemente llamas a la función con el ID correspondiente
     // applyNumericDniRestriction('otroDNI');
 });
 
 </script>
-=======
+
 <footer class="bg-dark text-white pt-4 pb-2 mt-5">
   <div class="container">
     <div class="row">
